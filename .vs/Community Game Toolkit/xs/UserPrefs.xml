@@ -1,0 +1,39 @@
+﻿<Properties StartupConfiguration="{63543849-43D3-EC2E-45FD-563E83102C79}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CGDT Components/SceneChange-Volume/SceneChangeVolume.cs">
+    <Files>
+      <File FileName="Assets/NewSurfaceShader.shader" Line="57" Column="2" />
+      <File FileName="Assets/CGDT Components/CGDT Control/TextureImport.cs" />
+      <File FileName="Assets/CGDT Components/Player - Grounded/MouselookVertical.cs" />
+      <File FileName="Assets/CGDT Components/Player - Fying/MouseLookHorizontalFlying.cs" />
+      <File FileName="Assets/CGDT Components/Player - Fying/MouseLookVerticalFlying.cs" />
+      <File FileName="Assets/CGDT Components/CGDT Control/TwoWayQuads.cs" />
+      <File FileName="Assets/CGDT Components/SceneChange-Volume/SceneChange-Volume.cs" Line="6" Column="31" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Community Game Toolkit" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="CGDT Components" expanded="True">
+                <Node name="CGDT Control" expanded="True" />
+                <Node name="Player - Fying" expanded="True" />
+                <Node name="Player - Grounded" expanded="True" />
+                <Node name="SceneChange-Pad" expanded="True" />
+                <Node name="SceneChange-Volume" expanded="True">
+                  <Node name="SceneChangeVolume.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="1c27c1df-4560-45b6-8310-783f731c8234" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
