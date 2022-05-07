@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{8363807D-B709-29B2-1654-AC0451165153}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/CGDT Components/CGDT Control/TextureImport.cs">
+    <Files>
+      <File FileName="Assets/CGDT Components/CGDT Control/TextureImport.cs" Line="54" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Community-Game-Development-Toolkit" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="55d6d091-8eb0-4dab-aaa4-02a26c57d5f0" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

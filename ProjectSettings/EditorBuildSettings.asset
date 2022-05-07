@@ -5,16 +5,20 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Example Scenes/Snow.unity
     guid: 2059722ca1d9f478c8e5ab69d51eaedf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Example Scenes/Forest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Your Scenes/AyoTDan.unity
+    path: Assets/AyoTDan/AyoTDan.unity
     guid: 6a42ebdce17e7419ab9e7f4d4f7a13ed
-  - enabled: 1
-    path: Assets/Your Scenes/AyoTDan2.unity
+  - enabled: 0
+    path: Assets/AyoTDan/AyoTDan2.unity
     guid: 9aae4bc96ea17469db08173c1f9f401d
-  m_configObjects: {}
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 46fd6b62c24e04ba28e447477009015d,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 57c42c4b591ff420b9990cece809c3ef,
+      type: 2}

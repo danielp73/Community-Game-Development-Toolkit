@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Your Scenes/AyoTDan.unity
+- path: Assets/Your Scenes/test.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
