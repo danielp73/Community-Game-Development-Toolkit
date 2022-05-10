@@ -1031,6 +1031,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneChange-Sphere-Visible
       objectReference: {fileID: 0}
+    - target: {fileID: 1841353334029092495, guid: a3f0c6fa9362f4b6e8fbfb7289712d93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3f0c6fa9362f4b6e8fbfb7289712d93, type: 3}
 --- !u!1001 &8895508774318533606
@@ -1044,6 +1049,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneChange-Sphere-Invisible
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895508774494546272, guid: a47eb54ae0a344ce193e27ad77eb589b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8895508774494546285, guid: a47eb54ae0a344ce193e27ad77eb589b,
         type: 3}
