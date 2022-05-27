@@ -59,6 +59,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Community-Game-Development-Toolkit/Your Scenes/test.unity.meta
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Community-Game-Development-Toolkit/Your Scenes/New Scene.unity
+    guid: 5d70e10d498854260bb31f4e8ecedbc6
+  - enabled: 1
+    path: Assets/Community-Game-Development-Toolkit/Your Scenes/New Scene.unity.meta
+    guid: 00000000000000000000000000000000
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 46fd6b62c24e04ba28e447477009015d,
       type: 2}

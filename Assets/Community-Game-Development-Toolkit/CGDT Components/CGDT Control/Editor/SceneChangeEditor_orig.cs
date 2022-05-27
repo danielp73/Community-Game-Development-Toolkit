@@ -42,9 +42,10 @@ public class SceneChangeEditor_orig : Editor
                 sceneNames[i] = "[CGDT Example Scene] " + sceneNames[i];
             }
         }
-        index = EditorGUILayout.Popup(index, sceneNames);
+        index = EditorGUILayout.Popup(scenePathProp.intValue, sceneNames);
         scenePathProp.stringValue = paths[index];
-        //Debug.Log("selected scene path: " + paths[index]);
+        scenePathProp.intValue = index;
+        Debug.Log("selected scene path: " + paths[index]);
 
         EditorGUILayout.PropertyField(isVisibleProp);
 

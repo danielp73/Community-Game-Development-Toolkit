@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class SceneChange : MonoBehaviour
 {
 
-    public string scenePath = "Assets/Community-Game-Development-Toolkit/Example Scenes/Forest.unity";
+    //public string scenePath = "Assets/Community-Game-Development-Toolkit/Example Scenes/Forest.unity";
+    public string scenePath;
+    public int sceneIndex;
     public bool isVisible = true;
     public bool isSceneChange = false;
 
@@ -30,7 +32,7 @@ public class SceneChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("scene change: trigger enter");
+        Debug.Log("scene change: " + scenePath);
         SceneManager.LoadScene(scenePath);
     }
 

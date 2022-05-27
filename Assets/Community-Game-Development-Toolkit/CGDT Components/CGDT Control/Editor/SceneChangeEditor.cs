@@ -11,6 +11,7 @@ public class SceneChangeEditor : Editor
 
     private SerializedProperty scenePathProp;
     private SerializedProperty isVisibleProp;
+    private SerializedProperty sceneIndexProp;
     private int index;
     private string[] paths;
     private string exampleSceneCheck = "Community-Game-Development-Toolkit/Example Scenes";
@@ -20,6 +21,7 @@ public class SceneChangeEditor : Editor
         Debug.Log("enable");
         scenePathProp = serializedObject.FindProperty("scenePath");
         isVisibleProp = serializedObject.FindProperty("isVisible");
+        sceneIndexProp = serializedObject.FindProperty("sceneIndex");
 
         //paths = getScenePaths();
         //foreach (string theScene in paths)
@@ -42,9 +44,11 @@ public class SceneChangeEditor : Editor
                 sceneNames[i] = "[CGDT Example Scene] " + sceneNames[i];
             }
         }
-        index = EditorGUILayout.Popup(index, sceneNames);
-        scenePathProp.stringValue = paths[index];
-        //Debug.Log("selected scene path: " + paths[index]);
+        //get and store scene index
+        sceneIndexProp.intValue = EditorGUILayout.Popup(sceneIndexProp.intValue, sceneNames);
+        //store scene path, based on index
+        scenePathProp.stringValue = paths[sceneIndexProp.intValue];
+        Debug.Log("selected scene path: " + paths[sceneIndexProp.intValue]);
 
         EditorGUILayout.PropertyField(isVisibleProp);
 
