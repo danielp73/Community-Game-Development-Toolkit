@@ -5,31 +5,33 @@ using UnityEditor;
 using System;
 using System.IO;
 
-[CustomEditor(typeof(SceneChangePad))]
-public class SceneChangePadEditor : Editor
+[CustomEditor(typeof(SceneChange))]
+public class SceneChangeEditor_orig : Editor
 {
 
-    private SerializedProperty scenePath;
+    private SerializedProperty scenePathProp;
+    private SerializedProperty isVisibleProp;
     private int index;
     private string[] paths;
     private string exampleSceneCheck = "Community-Game-Development-Toolkit/Example Scenes";
-    //private string[] sceneNames;
 
     private void OnEnable()
     {
         Debug.Log("enable");
-        scenePath = serializedObject.FindProperty("scenePath");
+        scenePathProp = serializedObject.FindProperty("scenePath");
+        isVisibleProp = serializedObject.FindProperty("isVisible");
 
-        paths = getScenePaths();
-        foreach (string theScene in paths)
-            Debug.Log("found scene: " + theScene);
+        //paths = getScenePaths();
+        //foreach (string theScene in paths)
+        //    Debug.Log("found scene: " + theScene);
+
+
 
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        //EditorGUILayout.PropertyField(scenePath);
         paths = getScenePaths();
         string[] sceneNames = new string[paths.Length];
         for (int i = 0; i < paths.Length; i++)
@@ -41,8 +43,11 @@ public class SceneChangePadEditor : Editor
             }
         }
         index = EditorGUILayout.Popup(index, sceneNames);
-        scenePath.stringValue = paths[index];
-        Debug.Log("selected scene path: " + paths[index]);
+        scenePathProp.stringValue = paths[index];
+        //Debug.Log("selected scene path: " + paths[index]);
+
+        EditorGUILayout.PropertyField(isVisibleProp);
+
         serializedObject.ApplyModifiedProperties();
     }
 
