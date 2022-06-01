@@ -24,7 +24,7 @@ More examples coming soon!
 
 ##How to get started 
 1. Install Unity -- tutorial coming soon
-2. [Download and setup the CGDT template project](CreatingAProject.html)
+2. [Download and setup the CGDT template project](CreatingAProject)
 3. [Learn the very basics of Unity](NavigatingTheUnityInterface.html)
 3. [Create your first simple scene using assets included in the template project by following this tutorial](Tutorial-Using-Example-Assets.html)
 4. Create your own assets by following these tutorials
