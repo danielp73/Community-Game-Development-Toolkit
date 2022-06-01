@@ -1,13 +1,13 @@
 [⬅️ back home](intro.html)
 
-#Creating drawings and sketches for use in your project
+# Creating drawings and sketches for use in your project
 
 
 
 
-##Start by making a drawing
+## Start by making a drawing
 
-###Crayons are fun!
+### Crayons are fun!
 
 Make a drawing and take a photo of it. Try to take photo with even background light. Better yet, scan your drawing. Here is an example:
 
@@ -15,7 +15,7 @@ Make a drawing and take a photo of it. Try to take photo with even background li
 
 
 
-###Open in Photoshop
+### Open in Photoshop
 
 - Open your image in Photoshop
 - Crop using the Crop Tool:
@@ -37,7 +37,7 @@ Before:
 
 
 
-###Adjusting your image in Photoshop to make it easier to make a selection
+### Adjusting your image in Photoshop to make it easier to make a selection
 
 Open your image, and from the menu bar choose Image -> Adjustments -> Levels. Fool around with these markers to make your drawing stand out from the background:
 
@@ -56,7 +56,7 @@ Usually it helps to move the right most marker inwards to make bright parts brig
 
 
 
-###Make a selection using the Color Range Tool
+### Make a selection using the Color Range Tool
 
 - From menu bar choose Select -> Color Range. 
 - Check ‘Invert’
@@ -85,12 +85,12 @@ Press delete to delete the selected background. You should see checkerboard back
 
 
 
-###Saving as a Transparent PNG
+### Saving as a Transparent PNG
 
 - In the menu bar go to Image -> Image Size. Make your image about 1500 pixels in the maximum dimension.
 - Go to File -> Export -> Quick Export as PNG. Make sure to give your file a recognizable name, and take note of where you save it on your computer.
 
-##If you have a multicolor drawing
+## If you have a multicolor drawing
 
 Example:
 
@@ -118,13 +118,13 @@ Example:
 
 
 
-##Saving as a Transparent PNG
+## Saving as a Transparent PNG
 
 - In the menubar go to Image -> Image Size. Make your image about 1500 pixels in the maximum dimension.
 - Go to File -> Export -> Quick Export as PNG.
 - Find your Unity project folder, and navigate to Assets->Drawings inside that folder. Save your PNG at that location.
 
-##Add the photo to your CGDT Unity project
+## Add the photo to your CGDT Unity project
 - Make sure your CGDT project is open
 - In the Project panel in your Unity project, navigate to the Drawings folder. Drag your PNG to that folder in the Project panel. 
 - Drag it into your scene! 

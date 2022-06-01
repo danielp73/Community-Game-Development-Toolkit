@@ -1,4 +1,4 @@
-#Downloading and Installing Unity
+# Downloading and Installing Unity
 
 Go to the [Unity Website](https://unity.com/) and click on the 'Get Started' Button at the very top.
 

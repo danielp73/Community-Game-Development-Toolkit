@@ -1,13 +1,13 @@
-#The Community Game Development Toolkit
+# The Community Game Development Toolkit
 
 ![](images/toolkit.jpg)
 
 [Skip to How-To ⬇️](#howto)
 
-##What is it
+## What is it
 The Community Game Development Toolkit is a set of tools that make it easy and fun for students, artists, researchers and community members to create their own visually rich, interactive 3D environments and story-based games without the use of coding or other specialized game-design skills. Building on the popular 3D game design engine Unity, the toolkit provides intuitive tools for diverse communities to represent their own traditions, rituals and heritages through interactive, visual storytelling. Projects can be built for desktop, mobile and VR applications.
 
-##Examples
+## Examples
 ![](images/rt-yellow.jpg)
 ![](images/rt-circles.jpg)
 [The Raisin Truck Makes Raisins](https://www.daniellichtman.com/raisintruck/)
@@ -22,7 +22,7 @@ More examples coming soon!
 <a name="howto"></a>
 
 
-##How to get started 
+## How to get started 
 1. Install Unity -- tutorial coming soon
 2. [Download and setup the CGDT template project](CreatingAProject.html)
 3. [Learn the very basics of Unity](NavigatingTheUnityInterface.html)
@@ -36,11 +36,11 @@ More examples coming soon!
 	- For web -- tutorial coming soon
 	- For desktop -- tutorial coming soonx
 
-##Coming ASAP
+## Coming ASAP
 * Create multiple scenes and move between them in your project
 * Use video/moving image textures
 
-##Coming soon
+## Coming soon
 * Interactive text
 * Non-player characters
 * Simple animated materials
@@ -52,7 +52,7 @@ More examples coming soon!
 * VR pipeline  
 * And more...
 
-##Get involved / questions / contact
+## Get involved / questions / contact
 Contact Daniel Lichtman at danielp73 at gmail dot com.
  
 

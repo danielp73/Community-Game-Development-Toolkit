@@ -1,33 +1,33 @@
 [⬅️ back home](intro.html)
 
-#Unity Basics
+# Unity Basics
 
 Once you open Unity, you'll see something like this:
 ![unity interface](images/unity-interface.jpeg)
 
-##Parts of the interface
+## Parts of the interface
 ![labelled interface](images/unity-interface-notated.jpg)
 
-###Project
+### Project
 Dispalyes assets associated with your project. Assets include image files of drawings, photos and 360-degree photos you will use in your scenes, as well as materials, scripts, and other aspects of your project that are stored as files. The tutorial will cover which assets to focus on and how you can easily manage them.
 
-###Scene
+### Scene
 A 3D view of the current scene that you're editing. Each scene contains a particular combination of objects, photos and drawings that you compose in 3D. During gameplay, you can control how the player moves between scenes
 
-###Hierarchy
+### Hierarchy
 A list of objects and components that are in the current scene. You can click on an object's name to highlight it in the scene, and collect objects together in groups using this panel. You can rename objects to make them easier to keep track of.
 
-###Inspector
+### Inspector
 When you click on an object in your scene, its properties will appear in the inspector. When using the Community Game Development Toolkit, you won't have to deal with most of these properties. We will have to use some of them, however, which will be indicated in the tutorial.
 
 
-##Manipulating the 3D view in the Scene Panel
+## Manipulating the 3D view in the Scene Panel
 If a scene is not visible, open one of the example scenes by clicking on the Example Scenes folder in the Projects tab. Double click one of the scenes to open it in the Scene panel.
 
 ![example scene](images/example-scene.jpg)
 
 
-###Hand Tool
+### Hand Tool
 
 Now choose the Hand tool from the toolbar:
 
@@ -37,7 +37,7 @@ Use this tool to move the camera around the scene. This tool does not change the
 
 *Shortcut: You can also use the hand tool by dragging with the middle/scroll-wheel button on your mouse, or pressing Q.*
 
-###Orbit Tool
+### Orbit Tool
 
 Press the option (mac) or alt (windows) key to change the hand tool to the orbit tool. Now move the camera angle around with the mouse or trackpad
 
@@ -45,17 +45,17 @@ Press the option (mac) or alt (windows) key to change the hand tool to the orbit
 
 
 
-###Zooming In/Out
+### Zooming In/Out
 
 Use the scroll wheel or trackpad scroll
 
-##Manipulating Objects in the Scene
+## Manipulating Objects in the Scene
 
 The 3D space in the scene is organized along a set of X-Y-Z axes. This axis gizmo in the top right of your scene tells you which axis is pointing where:
 
 ![axis gizmo](images/axis-gizmo.jpg)
 
-###Move Tool
+### Move Tool
 
 ![move tool](images/move-tool.jpg)
 
@@ -69,7 +69,7 @@ You can also move the object by dragging the small reg, green and blue squares a
 
 *Shortcut: Access this tool using the the W key*
 
-###Rotating 
+### Rotating 
 
 ![rotate tool](images/rotate-tool.jpg)
 
@@ -81,7 +81,7 @@ Drag the colored circles to rotate the object around different axes.
 
 *Shortcut: Access this tool using the the E key*
 
-###Scaling
+### Scaling
 
 ![scale tool](images/scale-tool.jpg)
 
@@ -93,7 +93,7 @@ Click and drag the white box to scale the object up and down. Click and drag col
 
 *Shortcut: Access this tool using the the R key*
 
-##Creating 3D primitives (basic 3D shapes)
+## Creating 3D primitives (basic 3D shapes)
 
 You won't do this often while using the Community Game Development Toolkit, but it can be useful to understand how to create basic 3D shapes in your scene. Note that 3D primitives in the scene show up in the scene hierarchy (the panel on the left), but do not show up in the project panel (the bottom of the window).
 
@@ -105,7 +105,7 @@ Also from the '+' button in the hierarchy panel:
 
 ![game objects panel](images/create-gameobject-panel.jpg)
 
-###Types of Objects
+### Types of Objects
 
 * Cube
 * Sphere

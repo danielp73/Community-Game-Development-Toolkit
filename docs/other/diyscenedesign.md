@@ -44,7 +44,7 @@ https://unity.com
 - Message bar (bottom of screen)
 	- See debug data
 
-###Navigating your Scene
+### Navigating your Scene
 
 ![unity](asset-creation-images/image29.jpg)
 
@@ -63,9 +63,9 @@ Fly through mode:
 
 
 
-##Using drawings and photos to create transparencies and interesting textures for your scene 
+## Using drawings and photos to create transparencies and interesting textures for your scene 
 
-###Crayons are fun!
+### Crayons are fun!
 
 Make a drawing and take a photo of it. Try to take photo with even background light. Better yet, scan your drawing. Here is an example:
 
@@ -73,7 +73,7 @@ Make a drawing and take a photo of it. Try to take photo with even background li
 
 
 
-###Open in Photoshop
+### Open in Photoshop
 
 - Open your image in Photoshop
 - Crop using the Crop Tool:
@@ -95,7 +95,7 @@ Before:
 
 
 
-###Adjusting your image in Photoshop to make it easier to make a selection
+### Adjusting your image in Photoshop to make it easier to make a selection
 
 Open your image, and from the menu bar choose Image -> Adjustments -> Levels. Fool around with these markers to make your drawing stand out from the background:
 
@@ -114,7 +114,7 @@ Usually it helps to move the right most marker inwards to make bright parts brig
 
 
 
-###Make a selection using the Color Range Tool
+### Make a selection using the Color Range Tool
 
 - From menu bar choose Select -> Color Range. 
 - Check ‘Invert’
@@ -143,12 +143,12 @@ Press delete to delete the selected background. You should see checkerboard back
 
 
 
-###Saving as a Transparent PNG
+### Saving as a Transparent PNG
 
 - In the menu bar go to Image -> Image Size. Make your image about 1500 pixels in the maximum dimension.
 - Go to File -> Export -> Quick Export as PNG. Make sure to give your file a recognizable name, and take note of where you save it on your computer.
 
-##If you have a multicolor drawing
+## If you have a multicolor drawing
 
 Example:
 
@@ -175,7 +175,7 @@ Example:
 ![unity](asset-creation-images/image13.jpg)
 
 
-###Cropping objects out of images
+### Cropping objects out of images
 
 Example (it’s easiest if your object stands out from the background):
 
@@ -186,7 +186,7 @@ Example (it’s easiest if your object stands out from the background):
 ![unity](asset-creation-images/image28.jpg)
 
 
-###Option 1: Using object selection tool
+### Option 1: Using object selection tool
 
 ![unity](asset-creation-images/image32.jpg)
 
@@ -196,7 +196,7 @@ Example (it’s easiest if your object stands out from the background):
 ![unity](asset-creation-images/image6.jpg)
 
 
-###Option 2: Using Quick Selection Tool
+### Option 2: Using Quick Selection Tool
 
 ![unity](asset-creation-images/image32.jpg)
 
@@ -210,7 +210,7 @@ This is a good size to select the main portion of this object:
 
 For smaller sections of object, you can make the selection brush smaller.
 
-###Removing from selected area
+### Removing from selected area
 
 For example, if you select this sand area:
 
@@ -218,7 +218,7 @@ For example, if you select this sand area:
 
 Press the option (or alt if you are on windows) key while selecting the areas you would like to remove from your selection. 
 
-###Now: Once your finished making your selection
+### Now: Once your finished making your selection
 
 
 Now in the menubar go to Selection -> Inverse to select background. Delete the background to leaves transparency around the object:
@@ -226,13 +226,13 @@ Now in the menubar go to Selection -> Inverse to select background. Delete the b
 ![unity](asset-creation-images/image6.jpg)
 
 
-###Saving as a Transparent PNG
+### Saving as a Transparent PNG
 
 - In the menubar go to Image -> Image Size. Make your image about 1500 pixels in the maximum dimension.
 - Go to File -> Export -> Quick Export as PNG. Make sure to give your file a recognizable name, and take note of where you save it on your computer.
 
 
-##Now add your transparent image into your project in Unity
+## Now add your transparent image into your project in Unity
 
 To create a flat image with transparency
 - Import your PNG into Unity
@@ -244,7 +244,7 @@ To create a flat image with transparency
 - Drag your PNG asset into the scene
 - Move the asset using Move, Scale and Rotate Tools
 
-##Add 360-degree photos as skyboxes (backgrounds)
+## Add 360-degree photos as skyboxes (backgrounds)
 
 - Download Google Street view app on your phone
 - Follow directions to creat create a new 360 photo
@@ -263,20 +263,20 @@ To create a flat image with transparency
 ![unity](asset-creation-images/image21.jpg)
 
 
-##Now the fun part
+## Now the fun part
 
 Create / import a lot of drawings and photo cut outs. Explore ways of positioning them in the scene -- a variety of angles, sizes and rotations is usually fun! Try out a variety of skyboxes.
 
-##Creating a player for your scene!
+## Creating a player for your scene!
 
-###Get it setup
+### Get it setup
 
 - Download player assets: https://drive.google.com/file/d/1kW4a9Tg29OgBMadLajBKmTrfATBigFGt/view?usp=sharing
 - Drag the folder ‘Players’ into your project
 - For a player that moves along a ground plane, drag Player - Grounded into your scene
 - For a player that flies through space, drag Play - Flying into your scene
 
-###Try it out!
+### Try it out!
 
 - Press the ‘play’ button, or press Cmd/Control-P
 - - Move the camera around with the mouse
@@ -284,7 +284,7 @@ Move the player around with WASD or arrow keys
 
 
 
-##Example compositions with drawings and photos
+## Example compositions with drawings and photos
 
 From my project, The Raisin Truck Makes Raisins: https://www.daniellichtman.com/raisintruck/
 
