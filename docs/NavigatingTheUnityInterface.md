@@ -1,4 +1,4 @@
-[⬅️ back home](intro.html)
+[⬅️ back to How To](howto.md)
 
 # Unity Basics
 

@@ -1,3 +1,0 @@
-#Creating Artwork using Found Images 
-
-TBC...
