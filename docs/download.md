@@ -1,6 +1,6 @@
 [⬅️ back home](intro.html)
 
-# Download the template project
+# Download the toolkit
 
-[Download here](https://drive.google.com/file/d/1I0tRRHfVcuFra7UyQ2XDBEof9mmQ-cS-/view?usp=sharing)
+[Download here](https://www.daniellichtman.com/toolkit-download/Community-Game-Development-Toolkit.zip)
 

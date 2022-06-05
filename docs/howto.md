@@ -8,8 +8,8 @@
 2. [Learn the very basics of Unity](NavigatingTheUnityInterface.md)
 
 ## Setting up your project
-1. [Create a new 3D project in Unity] (Create3DProject.md)
-2. [Download and setup the CGDT template project](CreatingAProject.md)
+1. [Create a new 3D project in Unity](Create3DProject.md)
+2. [Import the Commuity Game Development Toolkit into the project you just created](ImportToolkit.md)
 
 ## Jump in -- create a scene using provided example assets  
 3. [Create your first simple scene using assets included in the template project by following this tutorial](Tutorial-Using-Example-Assets.md)
