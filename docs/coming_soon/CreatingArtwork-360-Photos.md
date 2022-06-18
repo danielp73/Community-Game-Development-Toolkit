@@ -1,3 +1,0 @@
-# Creating Artwork - DIY 360 Degree Photos
-
-Coming soon...
