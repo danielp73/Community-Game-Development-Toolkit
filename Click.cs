@@ -7,11 +7,21 @@ public class Click : MonoBehaviour
     private Color oldColor;
     private Color newColor = Color.red;
 
+    private GameObject selected;
+    private GameObject oldSelected;
+
+    private Camera _camera;
+
 
     void Start()
     {
-        oldColor = GetComponent<Renderer>().material.color;
+       // if (gameObject.GetComponent<CharacterController>()){ 
+            //trying to access the camera attached to the player
+        _camera = GameObject.Find("Camera").GetComponent<Camera>();
+        //}
+
         if (gameObject.GetComponent<Collider>() == null)
+        //adds a box collider if an object doesn't have one
         {
             gameObject.AddComponent<BoxCollider>();
         }
@@ -20,18 +30,32 @@ public class Click : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        Renderer selectionRenderer;
+
+        if (Input.GetMouseButtonDown(0)) //if clicked
         {
-            Vector3 point = new Vector3(Camera.main.pixelWidth/2, Camera.main.pixelHeight/2, 0);
-            Ray ray = Camera.main.ScreenPointToRay(point);
+    
+            Vector3 point = new Vector3(_camera.pixelWidth/2, _camera.pixelHeight/2, 0); //middle of camera view
+            Ray ray = _camera.ScreenPointToRay(point);
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             
 
             if (Physics.Raycast(ray, out hit))
             {
-                GameObject targetObject = hit.transform.gameObject;
-                targetObject.GetComponent<Renderer>().material.color = newColor;
-            
+                selected = hit.transform.gameObject;
+                
+
+                if (selected != oldSelected || oldSelected == null)
+                {
+                    selectionRenderer = selected.GetComponent<Renderer>();
+                    oldColor = selectionRenderer.material.color; //saves the old color
+                    selectionRenderer.material.color = newColor; //sets a new color
+                    if (oldSelected != null)
+                    {
+                        oldSelected.GetComponent<Renderer>().material.color = oldColor;
+                    }  
+                }
             }
         }
     }
