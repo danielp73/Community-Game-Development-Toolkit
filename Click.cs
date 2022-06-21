@@ -15,10 +15,8 @@ public class Click : MonoBehaviour
 
     void Start()
     {
-       // if (gameObject.GetComponent<CharacterController>()){ 
-            //trying to access the camera attached to the player
         _camera = GameObject.Find("Camera").GetComponent<Camera>();
-        //}
+        
 
         if (gameObject.GetComponent<Collider>() == null)
         //adds a box collider if an object doesn't have one
@@ -37,7 +35,6 @@ public class Click : MonoBehaviour
     
             Vector3 point = new Vector3(_camera.pixelWidth/2, _camera.pixelHeight/2, 0); //middle of camera view
             Ray ray = _camera.ScreenPointToRay(point);
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             
 
