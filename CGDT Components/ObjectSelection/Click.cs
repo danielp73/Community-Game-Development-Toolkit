@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    private GameObject selectedObject;
+    private GameObject selected;
+    private GameObject oldSelected;
+    
     private Renderer selectionRenderer;
+    private Renderer oldSelectionRenderer;
 
     private Camera _camera;
 
-    private Color oldColor;
+    private Color oldColor = Color.white;
     private Color newColor = Color.red;
 
 
@@ -39,11 +42,20 @@ public class Click : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                selectedObject = hit.collider.gameObject;
-                if (selectedObject != null){
-                    selectionRenderer = selectedObject.GetComponent<Renderer>();
-                    oldColor = selectionRenderer.material.color; //saves the old color
+                selected = hit.transform.gameObject;
+
+                if (selected != oldSelected){
+
+                    if (oldSelected != null) //returns previous selection to original color
+                    {
+                        oldSelectionRenderer = oldSelected.GetComponent<Renderer>();
+                        oldSelectionRenderer.material.color = oldColor;
+                    }
+
+                    selectionRenderer = selected.GetComponent<Renderer>();
                     selectionRenderer.material.color = newColor; //sets a new color
+
+                    oldSelected = selected;
                 }
             }
             
