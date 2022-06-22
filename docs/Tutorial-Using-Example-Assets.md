@@ -67,6 +67,7 @@ Using the toolkt is easy! Get a taste of how to use it by experimenting with exa
 
 * Find the CGDT Components --> Player Flying folder in the Project panel
 * Drag Player-Flying to the scene
+* Note: Player-Flying is a player that moves around freely in 3D space. Player-Grounded moves only along the ground.
 
 ## Play the scene!
 
@@ -75,18 +76,23 @@ Using the toolkt is easy! Get a taste of how to use it by experimenting with exa
 * Use the mouse to look around
 * Use the arrow keys, or ASDW keys to move the character through the scene
 
-<!---- begin statcounter ---->
-<script type="text/javascript">
-var sc_project = 12399103;
-var sc_invisible = 1;
-var sc_security = "dbebcd0c";
-</script>
-<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
-<noscript>
-<div class="statcounter">
-    <a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/12399103/0/dbebcd0c/1/" alt="Web Analytics" /></a>
-</div>
-</noscript>
-<!-- end statcounter -->
+## Now add a scene change
+![](images/addscenechange.jpg)
+
+* Scene change elements are obejcts that transport the player to another scene when the player passes through the object. Any object (drawing, painting, diagram, photo cut-out) can function as a scene change object.
+* Here we will use the purple ring painting as a scene change object (because it looks vaguely like a portal -- but it is up to you what a scene change should look like)
+* Here we scaled-down the ring painting and positioned in front of other objects to make it noticable. 
+* In the Projects tab, select the CGDT Components -> SceneChange folder
+* Drag the SceneChange script to the purple ring in the scene
+* Make sure you currectly added the script by checking that the scene change component shows up in the inspector (on the right) when the purple ring is selceted.
+
+![](images/sceneselection.jpg)
+
+* Choose which scene you want your player to be transported to using the drop down menu (example scenes included in the toolkit are indicated with [CGDT Example Scene]. Here we've selected the example scene, Forest.
+* Play your scene -- move the player through the purple ring and you will be transported to the Forest Scene.
+
+##Create interactive narrative
+* Make more new scenes, and add scene change objects that take the player from one scene to another!
+
 
 
