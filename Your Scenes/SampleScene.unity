@@ -230,19 +230,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 88043510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11139855e0af0406691b2652e3e2deda, type: 3}
+  m_Script: {fileID: 11500000, guid: 60f3146fa464d4bc19ba4799fef08d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  newColor:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
 --- !u!1 &191186779
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 191186782}
   - component: {fileID: 191186781}
-  - component: {fileID: 191186780}
+  - component: {fileID: 191186783}
   m_Layer: 0
   m_Name: fern
   m_TagString: Untagged
@@ -261,28 +251,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &191186780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191186779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11139855e0af0406691b2652e3e2deda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oldColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  newColor:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
 --- !u!212 &191186781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -350,6 +318,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &191186783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191186779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f3146fa464d4bc19ba4799fef08d6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,16 +659,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132444868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11139855e0af0406691b2652e3e2deda, type: 3}
+  m_Script: {fileID: 11500000, guid: 60f3146fa464d4bc19ba4799fef08d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oldColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  newColor:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
