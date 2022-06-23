@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SimpleObjectMove : MonoBehaviour
 {
+
+    public Click movableObject;
+    
     // Start is called before the first frame update
     void Start()
     {
