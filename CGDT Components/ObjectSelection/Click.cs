@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    public GameObject selected;
-    public GameObject oldSelected;
+    private GameObject selected;
+    private GameObject oldSelected;
     
     private Renderer selectionRenderer;
     private Renderer oldSelectionRenderer;
 
-    public Camera _camera;
+    private Camera _camera;
 
     private Color oldColor = Color.white;
     private Color newColor = Color.red;
@@ -37,10 +37,13 @@ public class Click : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
-        { 
+        {
+            //Debug.Log("raycast hit: " + hit.transform.gameObject.name);
 
-            if (Input.GetMouseButtonDown(0) && !selected) //if clicked
-            {   
+            if (Input.GetMouseButtonDown(0)) //if clicked
+            {
+                Debug.Log("clicked on: " + hit.transform.gameObject.name);
+
                 selected = hit.transform.gameObject;
 
                 if (selected != oldSelected) //if the object wasn't already selected
@@ -57,17 +60,12 @@ public class Click : MonoBehaviour
                     oldSelected = selected; //set the newly red object as the previously selected
                 }
             }
-            else if (Input.GetMouseButton(0) && selected)
-            {
-                //GameObject Player = GetComponent<CharacterController>();
 
-                if (Input.GetKey(KeyCode.J))
-                {
-                    transform.RotateAround(_camera.transform.position, Vector3.up, 20 * Time.deltaTime);
-                }
+            if(selected && Input.GetKey(KeyCode.J))
+            {
+                transform.RotateAround(_camera.transform.position, Vector3.up, 20 * Time.deltaTime);
             }
 
-            
         }
     }
 }
