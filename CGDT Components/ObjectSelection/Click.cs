@@ -57,14 +57,13 @@ public class Click : MonoBehaviour
                     oldSelected = selected; //set the newly red object as the previously selected
                 }
             }
-
             else if (Input.GetMouseButton(0) && selected)
             {
-                public GameObject Player = GetComponent<CharacterController>();
+                //GameObject Player = GetComponent<CharacterController>();
 
                 if (Input.GetKey(KeyCode.J))
                 {
-                    transform.RotateAround(Player.transform.position, Vector3.up, 20 * Time.deltaTime);
+                    transform.RotateAround(_camera.transform.position, Vector3.up, 20 * Time.deltaTime);
                 }
             }
 
