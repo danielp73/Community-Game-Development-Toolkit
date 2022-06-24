@@ -80,12 +80,12 @@ public class ClickFromCamera : MonoBehaviour
             //move away from player
             if (Input.GetKey(KeyCode.I))
             {
-               selected.transform.position += _camera.transform.forward.normalize * moveSpeed * Time.deltaTime;
+               selected.transform.position += _camera.transform.forward * moveSpeed * Time.deltaTime;
             }
             //move towards player
             if (Input.GetKey(KeyCode.K))
             {
-                selected.transform.position += _camera.transform.forward.normalize * -moveSpeed * Time.deltaTime;
+                selected.transform.position += _camera.transform.forward * -moveSpeed * Time.deltaTime;
             }
         }
 
