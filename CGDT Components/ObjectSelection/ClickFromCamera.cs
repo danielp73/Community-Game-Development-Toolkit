@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClickFromCamera : MonoBehaviour
 {
     public float rotateSpeed = 20f;
+    public float moveSpeed = 5f;
 
     private GameObject selected;
     private GameObject oldSelected;
@@ -75,6 +76,16 @@ public class ClickFromCamera : MonoBehaviour
             if (Input.GetKey(KeyCode.J))
             {
                 selected.transform.RotateAround(_camera.transform.position, Vector3.up, -rotateSpeed * Time.deltaTime);
+            }
+            //move away from player
+            if (Input.GetKey(KeyCode.I))
+            {
+               selected.transform.position += _camera.transform.forward.normalize * moveSpeed * Time.deltaTime;
+            }
+            //move towards player
+            if (Input.GetKey(KeyCode.K))
+            {
+                selected.transform.position += _camera.transform.forward.normalize * -moveSpeed * Time.deltaTime;
             }
         }
 
