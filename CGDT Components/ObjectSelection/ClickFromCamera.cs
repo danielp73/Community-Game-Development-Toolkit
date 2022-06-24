@@ -6,6 +6,7 @@ public class ClickFromCamera : MonoBehaviour
 {
     public float rotateSpeed = 20f;
     public float moveSpeed = 5f;
+    public float scaleSpeed = 1f;
 
     private GameObject selected;
     private GameObject oldSelected;
@@ -70,22 +71,53 @@ public class ClickFromCamera : MonoBehaviour
             //rotate right
             if (Input.GetKey(KeyCode.L))
             {
-                selected.transform.RotateAround(_camera.transform.position, Vector3.up, rotateSpeed * Time.deltaTime);
+                selected.transform.RotateAround(_camera.transform.position, _camera.transform.up, rotateSpeed * Time.deltaTime);
             }
             //rotate left
             if (Input.GetKey(KeyCode.J))
             {
-                selected.transform.RotateAround(_camera.transform.position, Vector3.up, -rotateSpeed * Time.deltaTime);
+                selected.transform.RotateAround(_camera.transform.position, _camera.transform.up, -rotateSpeed * Time.deltaTime);
             }
             //move away from player
             if (Input.GetKey(KeyCode.I))
             {
-               selected.transform.position += _camera.transform.forward * moveSpeed * Time.deltaTime;
+               selected.transform.position += _camera.transform.forward * moveSpeed * Time.deltaTime; 
             }
             //move towards player
             if (Input.GetKey(KeyCode.K))
             {
                 selected.transform.position += _camera.transform.forward * -moveSpeed * Time.deltaTime;
+            }
+            //move object up
+            if (Input.GetKey(KeyCode.U))
+            {
+                selected.transform.position += _camera.transform.up * moveSpeed * Time.deltaTime;
+            }
+            //move object down
+            if (Input.GetKey(KeyCode.M))
+            {
+               selected.transform.position += _camera.transform.up * -moveSpeed * Time.deltaTime;
+            }
+            
+            Vector3 temp;
+            
+            if (Input.GetKey(KeyCode.O))
+            {
+                temp = selected.transform.localScale;
+                temp.x += scaleSpeed * Time.deltaTime;
+                temp.y += scaleSpeed * Time.deltaTime;
+                temp.z += scaleSpeed * Time.deltaTime;
+                selected.transform.localScale = temp;
+            }
+
+            //make object smaller
+            if (Input.GetKey(KeyCode.P))
+            {
+                temp = selected.transform.localScale;
+                temp.x -= scaleSpeed * Time.deltaTime;
+                temp.y -= scaleSpeed * Time.deltaTime;
+                temp.z -= scaleSpeed * Time.deltaTime;
+                selected.transform.localScale = temp;
             }
         }
 
