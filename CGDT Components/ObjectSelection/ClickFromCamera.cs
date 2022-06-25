@@ -30,6 +30,8 @@ public class ClickFromCamera : MonoBehaviour
     void Update()
     {
 
+        Vector3 selectedPosition = selected.transform.position;
+
         if (Input.GetMouseButtonDown(0)) //if clicked
         {
             //cast a ray from the center of the camera's screen
@@ -100,7 +102,7 @@ public class ClickFromCamera : MonoBehaviour
             }
             
             Vector3 temp;
-            
+            //make object bigger
             if (Input.GetKey(KeyCode.O))
             {
                 temp = selected.transform.localScale;
@@ -109,7 +111,6 @@ public class ClickFromCamera : MonoBehaviour
                 temp.z += scaleSpeed * Time.deltaTime;
                 selected.transform.localScale = temp;
             }
-
             //make object smaller
             if (Input.GetKey(KeyCode.P))
             {
@@ -118,6 +119,21 @@ public class ClickFromCamera : MonoBehaviour
                 temp.y -= scaleSpeed * Time.deltaTime;
                 temp.z -= scaleSpeed * Time.deltaTime;
                 selected.transform.localScale = temp;
+            }
+            //objects rotate on x axis
+            if (Input.GetKey(KeyCode.X))
+            {
+                selected.transform.RotateAround(selected.transform.position, selected.transform.right, Time.deltaTime * rotateSpeed);
+            }
+            //objects rotate on y axis
+            if (Input.GetKey(KeyCode.Y))
+            {
+                selected.transform.RotateAround(selected.transform.position, selected.transform.up, Time.deltaTime * rotateSpeed);
+            }
+            //objects rotate on z axis
+            if (Input.GetKey(KeyCode.Z))
+            {
+                selected.transform.RotateAround(selected.transform.position, selected.transform.forward, Time.deltaTime * rotateSpeed);
             }
         }
 
