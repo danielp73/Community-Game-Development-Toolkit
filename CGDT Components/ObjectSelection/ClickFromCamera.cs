@@ -29,9 +29,6 @@ public class ClickFromCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Vector3 selectedPosition = selected.transform.position;
-
         if (Input.GetMouseButtonDown(0)) //if clicked
         {
             //cast a ray from the center of the camera's screen
@@ -64,7 +61,6 @@ public class ClickFromCamera : MonoBehaviour
                     }
                 }
             }
-
         }
 
         //code to rotate selected object
