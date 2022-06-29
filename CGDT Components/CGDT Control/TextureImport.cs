@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class TextureImport : AssetPostprocessor
 {
     void OnPreprocessTexture()
