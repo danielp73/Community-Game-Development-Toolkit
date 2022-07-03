@@ -6,12 +6,16 @@ using CI.QuickSave;
 public class ExampleSaveController : MonoBehaviour
 {
 
-    private string rootName;
+    private string rootName1;
+    //private string rootName2;
+    //private string rootName3;
 
     // Start is called before the first frame update
     void Start()
     {
-        rootName = gameObject.name;
+        rootName1 = gameObject.name;
+        //rootName2 = gameObject.name;
+        //rootName3 = gameObject.name;
     }
 
     // Update is called once per frame
@@ -40,20 +44,43 @@ public class ExampleSaveController : MonoBehaviour
 
     public void ReadTransform()
     {
-        QuickSaveReader reader = QuickSaveReader.Create(rootName);
-        float x = reader.Read<float>("x");
-        float y = reader.Read<float>("y");
-        float z = reader.Read<float>("z");
+        QuickSaveReader reader1 = QuickSaveReader.Create(rootName1);
+        float x1 = reader1.Read<float>("x1");
+        float y1 = reader1.Read<float>("y1");
+        float z1 = reader1.Read<float>("z1");
 
-        transform.position = new Vector3(x, y, z);
+        float x2 = reader1.Read<float>("x2");
+        float y2 = reader1.Read<float>("y2");
+        float z2 = reader1.Read<float>("z2");
+
+        float x3 = reader1.Read<float>("x3");
+        float y3 = reader1.Read<float>("y3");
+        float z3 = reader1.Read<float>("z3");
+
+        transform.localScale = new Vector3(x3, y3, z3);
+
+        transform.position = new Vector3(x1, y1, z1);
+
+        transform.eulerAngles = new Vector3(x2, y2, z2);
+        
     }
 
     public void SaveTransform()
     {
-        QuickSaveWriter.Create(rootName)
-                        .Write("x", transform.position.x)
-                        .Write("y", transform.position.y)
-                        .Write("z", transform.position.z)
+        QuickSaveWriter.Create(rootName1)
+                        .Write("x1", transform.position.x)
+                        .Write("y1", transform.position.y)
+                        .Write("z1", transform.position.z)
+
+
+                        .Write("x2", transform.eulerAngles.x)
+                        .Write("y2", transform.eulerAngles.y)
+                        .Write("z2", transform.eulerAngles.z)
+
+                        .Write("x3", transform.localScale.x)
+                        .Write("y3", transform.localScale.y)
+                        .Write("z3", transform.localScale.z)
+
                         .Commit();
-    }
+      }                       
 }
