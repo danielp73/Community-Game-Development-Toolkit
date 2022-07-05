@@ -1,8 +1,8 @@
-#Adding a Scene Change
+# Adding a Scene Change
 
 Another cool feature of the toolkit is the scene change! Having a scene change in your project lets you link together and visit multiple scenes without needing to leave play mode.
 
-![Add a new scene change](Downloads/SceneChange1.jpeg)
+![Add a new scene change](images/SceneChange1.jpeg)
 
 * Scene change elements are objects that transport the player to another scene when the player passes through the object. Any object (drawing, painting, diagram, photo cut-out) can function as a scene change object.
 * Here we will use the purple ring painting as a scene change object (because it looks vaguely like a portal -- but it is up to you what a scene change should look like)
@@ -12,7 +12,7 @@ Another cool feature of the toolkit is the scene change! Having a scene change i
 * Make sure you currectly added the script by checking that the scene change component shows up in the inspector (on the right) when the purple ring is selceted.
 
 
-![Choose a new scene](Downloads/SceneChange2.jpeg)
+![Choose a new scene](images/SceneChange2.jpeg)
 
 * Choose which scene you want your player to be transported to using the drop down menu (example scenes included in the toolkit are indicated with [CGDT Example Scene]. Here we've selected the example scene, Forest.
 * Play your scene -- move the player through the purple ring and you will be transported to the Forest Scene.
