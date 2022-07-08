@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CI.QuickSave;
 
 public class ClickFromCamera : MonoBehaviour
 {
@@ -19,10 +20,22 @@ public class ClickFromCamera : MonoBehaviour
     private Color oldColor = Color.white;
     private Color newColor = Color.red;
 
+    private string rootName;
+
 
     void Start()
     {   //gets the camera attached to the player
         _camera = GameObject.Find("Camera").GetComponent<Camera>();
+
+        GameObject[] obs = (GameObject[]) Object.FindObjectsOfType(typeof(GameObject));
+        for (int i = 0; i < obs.Length; i++)
+        {
+            rootName = obs[i].name;
+            if (rootName != null)
+            {
+                ReadObjectTransform(rootName);
+            }
+        }
         
     }
 
@@ -66,6 +79,9 @@ public class ClickFromCamera : MonoBehaviour
         //code to rotate selected object
         if (selected)
         {
+            rootName = selected.name;
+            SaveObjectTransform(rootName);
+
             //rotate right
             if (Input.GetKey(KeyCode.L))
             {
@@ -135,5 +151,46 @@ public class ClickFromCamera : MonoBehaviour
 
 
 
+    }
+    void SaveObjectTransform(string rootName)
+    {
+        Debug.Log("Saving: " + rootName);
+        QuickSaveWriter.Create(rootName)
+                        .Write("positionX", transform.position.x)
+                        .Write("positionY", transform.position.y)
+                        .Write("positionZ", transform.position.z)
+
+
+                        .Write("rotationX", transform.eulerAngles.x)
+                        .Write("rotationY", transform.eulerAngles.y)
+                        .Write("rotationZ", transform.eulerAngles.z)
+
+                        .Write("scaleX", transform.localScale.x)
+                        .Write("scaleY", transform.localScale.y)
+                        .Write("scaleZ", transform.localScale.z)
+
+                        .Commit();
+
+    }
+    void ReadObjectTransform(string rootName)
+    {
+        QuickSaveReader reader = QuickSaveReader.Create(rootName);
+        float positionX = reader.Read<float>("positionX");
+        float positionY = reader.Read<float>("positionY");
+        float positionZ = reader.Read<float>("positionZ");
+
+        float rotationX = reader.Read<float>("rotationX");
+        float rotationY = reader.Read<float>("rotationY");
+        float rotationZ = reader.Read<float>("rotationZ");
+
+        float scaleX = reader.Read<float>("scaleX");
+        float scaleY = reader.Read<float>("scaleY");
+        float scaleZ = reader.Read<float>("scaleZ");
+
+        transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+
+        transform.position = new Vector3(positionX, positionY, positionZ);
+
+        transform.eulerAngles = new Vector3(rotationX, rotationY, rotationZ);
     }
 }
