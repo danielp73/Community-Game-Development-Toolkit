@@ -24,18 +24,24 @@ public class ClickFromCamera : MonoBehaviour
 
 
     void Start()
-    {   //gets the camera attached to the player
+    {
+        //disable cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+
+        //gets the camera attached to the player
         _camera = GameObject.Find("Camera").GetComponent<Camera>();
 
-        GameObject[] obs = (GameObject[]) Object.FindObjectsOfType(typeof(GameObject));
-        for (int i = 0; i < obs.Length; i++)
-        {
-            rootName = obs[i].name;
-            if (rootName != null)
-            {
-                ReadObjectTransform(rootName);
-            }
-        }
+        //GameObject[] obs = (GameObject[]) Object.FindObjectsOfType(typeof(GameObject));
+        //for (int i = 0; i < obs.Length; i++)
+        //{
+        //    rootName = obs[i].name;
+        //    if (rootName != null)
+        //    {
+        //        ReadObjectTransform(rootName);
+        //    }
+        //}
         
     }
 
@@ -79,38 +85,60 @@ public class ClickFromCamera : MonoBehaviour
         //code to rotate selected object
         if (selected)
         {
+
             rootName = selected.name;
-            SaveObjectTransform(rootName);
 
             //rotate right
             if (Input.GetKey(KeyCode.L))
             {
                 selected.transform.RotateAround(_camera.transform.position, _camera.transform.up, rotateSpeed * Time.deltaTime);
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //rotate left
             if (Input.GetKey(KeyCode.J))
             {
                 selected.transform.RotateAround(_camera.transform.position, _camera.transform.up, -rotateSpeed * Time.deltaTime);
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //move away from player
             if (Input.GetKey(KeyCode.I))
             {
-               selected.transform.position += _camera.transform.forward * moveSpeed * Time.deltaTime; 
+               selected.transform.position += _camera.transform.forward * moveSpeed * Time.deltaTime;
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //move towards player
             if (Input.GetKey(KeyCode.K))
             {
                 selected.transform.position += _camera.transform.forward * -moveSpeed * Time.deltaTime;
+
+                //save
+                SaveObjectTransform(rootName);
+
             }
             //move object up
             if (Input.GetKey(KeyCode.U))
             {
                 selected.transform.position += _camera.transform.up * moveSpeed * Time.deltaTime;
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //move object down
             if (Input.GetKey(KeyCode.M))
             {
                selected.transform.position += _camera.transform.up * -moveSpeed * Time.deltaTime;
+
+                //save
+                SaveObjectTransform(rootName);
             }
             
             Vector3 temp;
@@ -122,6 +150,10 @@ public class ClickFromCamera : MonoBehaviour
                 temp.y += scaleSpeed * Time.deltaTime;
                 temp.z += scaleSpeed * Time.deltaTime;
                 selected.transform.localScale = temp;
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //make object smaller
             if (Input.GetKey(KeyCode.P))
@@ -131,22 +163,55 @@ public class ClickFromCamera : MonoBehaviour
                 temp.y -= scaleSpeed * Time.deltaTime;
                 temp.z -= scaleSpeed * Time.deltaTime;
                 selected.transform.localScale = temp;
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //objects rotate on x axis
             if (Input.GetKey(KeyCode.X))
             {
                 selected.transform.RotateAround(selected.transform.position, selected.transform.right, Time.deltaTime * rotateSpeed);
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //objects rotate on y axis
             if (Input.GetKey(KeyCode.Y))
             {
                 selected.transform.RotateAround(selected.transform.position, selected.transform.up, Time.deltaTime * rotateSpeed);
+
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
             //objects rotate on z axis
             if (Input.GetKey(KeyCode.Z))
             {
                 selected.transform.RotateAround(selected.transform.position, selected.transform.forward, Time.deltaTime * rotateSpeed);
+
+
+                //save
+                SaveObjectTransform(rootName);
             }
+
+            //save 
+        }
+
+
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            string rootName = selected.name;
+            Debug.Log("[pressed 1] saving transform of: " + rootName);
+            SaveObjectTransform(rootName);
+        }
+
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            string rootName = selected.name;
+            Debug.Log("[pressed 2] reading transform of: " + rootName);
+            ReadObjectTransform(rootName);
         }
 
 
@@ -156,24 +221,26 @@ public class ClickFromCamera : MonoBehaviour
     {
         Debug.Log("Saving: " + rootName);
         QuickSaveWriter.Create(rootName)
-                        .Write("positionX", transform.position.x)
-                        .Write("positionY", transform.position.y)
-                        .Write("positionZ", transform.position.z)
+                        .Write("positionX", selected.transform.position.x)
+                        .Write("positionY", selected.transform.position.y)
+                        .Write("positionZ", selected.transform.position.z)
 
 
-                        .Write("rotationX", transform.eulerAngles.x)
-                        .Write("rotationY", transform.eulerAngles.y)
-                        .Write("rotationZ", transform.eulerAngles.z)
+                        .Write("rotationX", selected.transform.eulerAngles.x)
+                        .Write("rotationY", selected.transform.eulerAngles.y)
+                        .Write("rotationZ", selected.transform.eulerAngles.z)
 
-                        .Write("scaleX", transform.localScale.x)
-                        .Write("scaleY", transform.localScale.y)
-                        .Write("scaleZ", transform.localScale.z)
+                        .Write("scaleX", selected.transform.localScale.x)
+                        .Write("scaleY", selected.transform.localScale.y)
+                        .Write("scaleZ", selected.transform.localScale.z)
 
                         .Commit();
 
     }
     void ReadObjectTransform(string rootName)
     {
+        Debug.Log("reading transform of: " + rootName);
+
         QuickSaveReader reader = QuickSaveReader.Create(rootName);
         float positionX = reader.Read<float>("positionX");
         float positionY = reader.Read<float>("positionY");
@@ -187,10 +254,10 @@ public class ClickFromCamera : MonoBehaviour
         float scaleY = reader.Read<float>("scaleY");
         float scaleZ = reader.Read<float>("scaleZ");
 
-        transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+        selected.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
 
-        transform.position = new Vector3(positionX, positionY, positionZ);
+        selected.transform.position = new Vector3(positionX, positionY, positionZ);
 
-        transform.eulerAngles = new Vector3(rotationX, rotationY, rotationZ);
+        selected.transform.eulerAngles = new Vector3(rotationX, rotationY, rotationZ);
     }
 }
