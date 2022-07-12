@@ -33,15 +33,17 @@ public class ClickFromCamera : MonoBehaviour
         //gets the camera attached to the player
         _camera = GameObject.Find("Camera").GetComponent<Camera>();
 
-        //GameObject[] obs = (GameObject[]) Object.FindObjectsOfType(typeof(GameObject));
-        //for (int i = 0; i < obs.Length; i++)
-        //{
-        //    rootName = obs[i].name;
-        //    if (rootName != null)
-        //    {
-        //        ReadObjectTransform(rootName);
-        //    }
-        //}
+        GameObject[] obs = (GameObject[]) GameObject.FindGameObjectsWithTag("selectable");
+        for (int i = 0; i < obs.Length; i++)
+        {
+            selected = obs[i];
+            if (obs[i] != null){
+                rootName = obs[i].name;
+                if (rootName != null){
+                    ReadObjectTransform(rootName);
+                }
+            }
+        }
         
     }
 

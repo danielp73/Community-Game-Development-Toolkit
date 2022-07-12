@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 191186784}
   m_Layer: 0
   m_Name: fern
-  m_TagString: Untagged
+  m_TagString: selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,63 +706,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8032886252741303300, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303300, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_Name
       value: Player-Flying
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.45
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.06
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.92
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.18378751
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.007369255
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0.9828475
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.013368294
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.661
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 201.175
       objectReference: {fileID: 0}
-    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e,
-        type: 3}
+    - target: {fileID: 8032886252741303326, guid: b39664e08656549ee9602a00ec56588e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.549
       objectReference: {fileID: 0}
@@ -782,7 +770,7 @@ GameObject:
   - component: {fileID: 1842197733}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
