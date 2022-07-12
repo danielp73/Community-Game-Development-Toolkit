@@ -4,7 +4,7 @@
 
 ## Before you get started with the toolkit
 
-1. Install Unity -- tutorial coming soon
+1. [Install Unity](InstallingUnityTutorial.md)
 2. [Learn the very basics of Unity](NavigatingTheUnityInterface.md)
 
 ## Setting up your project
@@ -21,7 +21,7 @@
 3. Working with 360-degree photos -- tutorial coming soon
 
 ## Creating scene changes
-1. Add transitions to create multi-scene stories -- tutorial coming soon
+1. [Add transitions to create multi-scene stories](SceneChangeTutorial.md)
 
 
 ## Exporting and sharing your project
