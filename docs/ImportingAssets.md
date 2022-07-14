@@ -6,9 +6,15 @@ Okay! Assuming you've saved your art somewhere easy to find in your computer, th
 
 ![import assets](images/ImportAssets1.png)
 
-Navigate to the folder that makes the most sense for the type of art you'd like to import. Our recommendations would be diagrams, drawings, paintings, or photos. Then, drag and drop your file into that folder.
+Navigate to the folder that makes the most sense for the type of art you'd like to import. Our recommendations would be diagrams, drawings, paintings, or photos. 
 
 ![import assets](images/ImportAssets2.png)
 
+Then, drag and drop your file into that folder.
+
+![import assets](images/ImportAssets3.png)
+
 It will then appear in that folder, and that's it! It can now be dragged into the scene to be used as many times as you'd like.
+
+![import assets](images/ImportAssets4.png)
 
