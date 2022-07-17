@@ -198,23 +198,31 @@ public class ClickFromCamera : MonoBehaviour
                 SaveObjectTransform(rootName);
             }
 
-            //save 
+            //delete the selected object
+            if (Input.GetKey(KeyCode.Backspace))
+            {
+
+                Destroy(selected);
+                selected = null;
+                rootName = selected.name;
+                SaveObjectTransform(rootName);
+            } 
         }
 
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            string rootName = selected.name;
-            Debug.Log("[pressed 1] saving transform of: " + rootName);
-            SaveObjectTransform(rootName);
-        }
+        //if (Input.GetKey(KeyCode.Alpha1))
+        //{
+            //string rootName = selected.name;
+            //Debug.Log("[pressed 1] saving transform of: " + rootName);
+            //SaveObjectTransform(rootName);
+        //}
 
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            string rootName = selected.name;
-            Debug.Log("[pressed 2] reading transform of: " + rootName);
-            ReadObjectTransform(rootName);
-        }
+        //if (Input.GetKey(KeyCode.Alpha2))
+        //{
+            //string rootName = selected.name;
+            //Debug.Log("[pressed 2] reading transform of: " + rootName);
+            //ReadObjectTransform(rootName);
+        //}
 
 
 

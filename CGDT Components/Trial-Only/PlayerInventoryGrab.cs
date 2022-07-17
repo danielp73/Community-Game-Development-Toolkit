@@ -134,6 +134,11 @@ public class PlayerInventoryGrab : MonoBehaviour
         // Assign reference
         pickedItem = item;
 
+        if (pickedItem.GetComponent<Rigidbody>() == null)
+        {
+            pickedItem.AddComponent<Rigidbody>();
+        }
+
         // Disable rigidbody and reset velocities
         item.GetComponent<Rigidbody>().isKinematic = true;
         item.GetComponent<Rigidbody>().velocity = Vector3.zero;

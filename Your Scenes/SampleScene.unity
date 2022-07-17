@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 88043516}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Player
+  m_TagString: selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 191186784}
   m_Layer: 0
   m_Name: fern
-  m_TagString: Player
+  m_TagString: selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -576,6 +576,32 @@ MonoBehaviour:
   rotateSpeed: 20
   moveSpeed: 5
   scaleSpeed: 1
+--- !u!20 &1422620143 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8032886253092045378, guid: b39664e08656549ee9602a00ec56588e, type: 3}
+  m_PrefabInstance: {fileID: 1422620137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1770408925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8032886252741303300, guid: b39664e08656549ee9602a00ec56588e, type: 3}
+  m_PrefabInstance: {fileID: 1422620137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1770408926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770408925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154acde9038a04ea59a0528cfa8a608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCamera: {fileID: 1422620143}
+  slot: {fileID: 0}
+  maxObjectDistance: 5
+  inventoryTags: []
 --- !u!1 &2132444868
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +615,7 @@ GameObject:
   - component: {fileID: 2132444872}
   m_Layer: 0
   m_Name: square
-  m_TagString: Player
+  m_TagString: selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
