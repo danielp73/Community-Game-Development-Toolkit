@@ -21,7 +21,7 @@ More examples coming soon!
 
 <a name="howto"></a>
 
-##Toolkit functionality
+## Toolkit functionality
 
 * Use your own drawings, paintings and cuts out from photos to create 3D scenes
 *  Intuitively drag and drop drawings, paintings and photo cut outs into scenes -- toolkit automatically formats images
