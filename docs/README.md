@@ -8,14 +8,31 @@
 The Community Game Development Toolkit is a set of tools that make it easy and fun for students, artists, researchers and community members to create their own visually rich, interactive 3D environments and story-based games without the use of coding or other specialized game-design skills. Building on the popular 3D game design engine Unity, the toolkit provides intuitive tools for diverse communities to represent their own traditions, rituals and heritages through interactive, visual storytelling. Projects can be built for desktop, mobile and VR applications.
 
 ## Examples
-![](images/rt-yellow.jpg)
-![](images/rt-circles.jpg)
-[The Raisin Truck Makes Raisins](https://www.daniellichtman.com/raisintruck/)
+### The Raisin Truck Makes Raisins
+
+by Daniel Lichtman with contributions Ian Giles, Helena Haimes, James Prevett, David Baumflek and Johann Arens 
+A collaboratively produced interactive 3D environment that uses collage, spatial orientation/disorientation and organized chaos to reflect on the experience of caring for young children during pandemic and lockdown.
+
+[More Info](https://www.daniellichtman.com/raisintruck/)
+
+![](images/rt-mountain.jpg)
+![](images/rt-mouse.jpg)
+
+### MetaEternity
+
+By Teresa Braun, Ayodamola Okunseinde, June Bee, and Zelong Li
+
+Toolkit used as part of a VR and performance installation at Practice Gallery, Philadelphia
+
+![](images/meta-1.jpg)
+![](images/meta-2.jpg)
+![](images/meta-3.jpg)
+
+### Student work from the New Media Art program at Baruch College, CUNY
 
 ![](https://www.daniellichtman.com/mount-holyoke/images/student0.jpeg)
 ![](https://www.daniellichtman.com/toolkit/images/student1.jpeg)
 
-Student work from the New Media Art program at Baruch College, CUNY
 
 More examples coming soon!
 
