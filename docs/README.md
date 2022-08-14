@@ -9,6 +9,8 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 
 ## Toolkit functionality
 
+![](images/toolkit-diagram-1.jpg)
+
 * Use your own drawings, paintings and cuts out from photos to create 3D scenes
 * Intuitively drag and drop drawings, paintings and photo cut outs into scenes -- toolkit automatically formats images
 * Use transparency in drawings, paintings and photo cut outs to easily create rich, organic visual composition in 3D space
@@ -18,6 +20,7 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 * Use scene changes to create interactive visual narrative
 
 ## Coming soon
+
 * Use video/moving image textures
 * Interactive text
 * Simple animated materials
@@ -26,6 +29,7 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 * And more...
 
 ## Long Term Goals
+
 * Arrange and compose visual assets in an interactive game mode rather than in the Unity Editor
 * Create scene changes in an interactive game mode
 * --> provide workflow for avoiding the use of the Untiy environment all together
@@ -64,9 +68,9 @@ More examples coming soon!
 
 ## Context
 
-The toolkit is part of the NSF-funded VR-REU program in immersive visualization and virtual/augmented/mixed reality at the Visualization and Virtual Reality Lab at Hunter College, taught in games courses at Baruch College, CUNY and other CUNY campuses, plays a consulting role in the Ant Farm Art Building Creative Preservation Initiative (AFAAB) at Antioch College and has been featured in workshops at universities and institutions across the country.
+The toolkit is being developed as part of the NSF-funded VR-REU program in immersive visualization and virtual/augmented/mixed reality at the Visualization and Virtual Reality Lab at Hunter College, used in the MetaEternity project listed above, taught in games courses at Baruch College, CUNY and other CUNY campuses, plays a consulting role in the Ant Farm Art Building Creative Preservation Initiative (AFAAB) at Antioch College and has been featured in workshops at universities and institutions across the country.
 
-The toolkit has been presented at numerous conferences including iDMAa at Winona State University (2021, 2022), SLSA at Purdue University (2021, 2022), Museums Without Walls at the Museu sem Parades (2022) the Show Don't Tell Symposium at Culture Push (2021) and the New Media Caucus Showcase at the College Art Association Conference (2021)
+The toolkit has been presented at numerous conferences, workshops and exhibitions including iDMAa at Winona State University (2021, 2022), SLSA at Purdue University (2021, 2022), Museums Without Walls at the Museu sem Parades (2022) the Show Don't Tell Symposium at Culture Push (2021) and the New Media Caucus Showcase at the College Art Association Conference (2021)
 
 
 <a name="howto"></a>
