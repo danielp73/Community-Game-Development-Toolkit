@@ -39,8 +39,10 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 ## Examples
 ### The Raisin Truck Makes Raisins
 
-by Daniel Lichtman with contributions Ian Giles, Helena Haimes, James Prevett, David Baumflek and Johann Arens 
-A collaboratively produced interactive 3D environment that uses collage, spatial orientation/disorientation and organized chaos to reflect on the experience of caring for young children during pandemic and lockdown.
+by Daniel Lichtman with contributions Ian Giles, Helena Haimes, James Prevett, David Baumflek and Johann Arens.
+
+
+A collaboratively produced interactive 3D environment that uses collage, abstraction and spatial orientation/disorientation to reflect on the experience of caring for young children during pandemic and lockdown.
 
 [More Info](https://www.daniellichtman.com/raisintruck/)
 
