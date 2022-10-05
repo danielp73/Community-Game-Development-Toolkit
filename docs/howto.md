@@ -17,6 +17,7 @@
 ## Create and use your own assets
 1. 	[Creating photo cut-outs](CreatingArtwork-Photos.md)
 1. 	[Creating drawings and paintings](CreatingArtwork-Drawings.md)
+2. 	[Adding sound recordings to your scene](CreatingSoundRecordings.md)
 3. Working with 360-degree photos -- tutorial coming soon
 
 ## Creating scene changes
