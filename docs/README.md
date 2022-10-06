@@ -59,9 +59,17 @@ Toolkit used as part of a VR and performance installation at Practice Gallery, P
 ![](images/meta-2.jpg)
 ![](images/meta-3.JPG)
 
+###Collaborative Worldbuilding workshop at Museums Without Walls Conference, Museu sem Paredes / Queens University, 2022
+
+![](images/mwow-1.png)
+![](images/mwow-2.png)
+
+
+
+
 ### Student work from the New Media Art program at Baruch College, CUNY
 
-![](https://www.daniellichtman.com/mount-holyoke/images/student0.jpeg)
+![](https://www.daniellichtman.com/toolkit/images/student0.jpeg)
 ![](https://www.daniellichtman.com/toolkit/images/student1.jpeg)
 ![](images/student2.jpeg)
 ![](images/student3.jpeg)
