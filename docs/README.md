@@ -21,11 +21,13 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 
 ## Coming soon
 
+
+* VR pipeline for Meta Quest 2
 * Use video/moving image textures
 * Interactive text
 * Simple animated materials
 * Title screens and pause screens
-* VR pipeline  
+
 * And more...
 
 ## Long Term Goals
@@ -59,10 +61,16 @@ Toolkit used as part of a VR and performance installation at Practice Gallery, P
 ![](images/meta-2.jpg)
 ![](images/meta-3.JPG)
 
-###Collaborative Worldbuilding workshop at Museums Without Walls Conference, Museu sem Paredes / Queens University, 2022
+### Collaborative Worldbuilding workshop at Museums Without Walls Conference, Museu sem Paredes / Queens University, 2022
 
 ![](images/mwow-1.png)
 ![](images/mwow-2.png)
+
+### Collaborative Worldbuilding workshop at the Society for Language, Science and Art at Purdue University, 2022
+
+![](images/slsa-liz.jpg)
+![](images/slsa-chris.jpg)
+![](images/slsa-pratistha.jpg)
 
 
 
@@ -89,7 +97,7 @@ The toolkit has been presented at numerous conferences, workshops and exhibition
 [Go to How To page](howto.md)
 
 ## Get involved / questions / contact
-Contact Daniel Lichtman at danielp73 at gmail dot com.
+Contact Daniel Lichtman at daniel.lichtman at stockton dot edu.
 
 <!---- begin statcounter ---->
 <script type="text/javascript">
