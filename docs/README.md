@@ -73,17 +73,6 @@ Toolkit used as part of a VR and performance installation at Practice Gallery, P
 ![](images/slsa-pratistha.jpg)
 
 
-
-
-### Student work from the New Media Art program at Baruch College, CUNY
-
-![](https://www.daniellichtman.com/toolkit/images/student0.jpeg)
-![](https://www.daniellichtman.com/toolkit/images/student1.jpeg)
-![](images/student2.jpeg)
-![](images/student3.jpeg)
-
-More examples coming soon!
-
 ## Context
 
 The toolkit is being developed as part of the NSF-funded VR-REU program in immersive visualization and virtual/augmented/mixed reality at the Visualization and Virtual Reality Lab at Hunter College, used in the MetaEternity project listed above, taught in games courses at Baruch College, CUNY and other CUNY campuses, plays a consulting role in the Ant Farm Art Building Creative Preservation Initiative (AFAAB) at Antioch College and has been featured in workshops at universities and institutions across the country.
