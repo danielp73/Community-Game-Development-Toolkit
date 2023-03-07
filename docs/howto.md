@@ -25,7 +25,7 @@
 
 
 ## Exporting and sharing your project
-1. 	For web -- tutorial coming soon
+1. [Exporting web-based playable build to itch.io](ExportingToItch.md)
 1. 	For desktop -- tutorial coming soon
 
 
