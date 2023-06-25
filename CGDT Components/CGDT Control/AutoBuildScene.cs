@@ -2,6 +2,8 @@
 //https://gist.github.com/jbubriski/01474db14526318193a1733c6586acd3
 //(dan)
 
+#if UNITY_EDITOR
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -79,3 +81,5 @@ public class AutoBuildScene : UnityEditor.AssetModificationProcessor
         //}
     }
 }
+
+#endif
