@@ -3,6 +3,7 @@
 ![](images/toolkit.jpg)
 
 [Skip to How-To ⏩](howto.md)
+[Skip to How-To-VR ⏩](howtoVR.md)
 
 ## What is it
 The Community Game Development Toolkit is a set of tools that make it easy and fun for students, artists, researchers and community members to create their own visually rich, interactive 3D environments and story-based games without the use of coding or other specialized game-design skills. Building on the popular 3D game design engine Unity, the toolkit provides intuitive tools for diverse communities to represent their own traditions, rituals and heritages through interactive, visual storytelling. Projects can be built for desktop, mobile and VR applications.
@@ -84,6 +85,7 @@ The toolkit has been presented at numerous conferences, workshops and exhibition
 
 ## How to use the toolkit
 [Go to How To page](howto.md)
+[Go to How To VR page](howtoVR.md)
 
 ## Get involved / questions / contact
 Contact Daniel Lichtman at daniel.lichtman at stockton dot edu.
