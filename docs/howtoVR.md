@@ -9,7 +9,8 @@
 
 ## Setting up your project
 1. [Create a new 3D project in Unity](Create3DProject.md)
-2. [Import the Commuity Game Development Toolkit into the project you just created](ImportToolkit.md)
+2. [Set up the Unity VR settings](VRSettings.md)
+3. [Import the Commuity Game Development Toolkit into the project you just created](ImportToolkit.md)
 
 ## Jump in -- create a scene using provided example assets  
 3. [Create your first simple scene using assets included in the template project by following this tutorial](Tutorial-Using-Example-Assets.md)
@@ -24,8 +25,8 @@
 1. [Add transitions to create multi-scene stories](SceneChangeTutorial.md)
 
 
-## Exporting and sharing your project
-1. [Exporting web-based playable build to itch.io](ExportingToItch.md)
+## Exporting and sharing your project on Oculus Quest 2 Headset
+1. [Exporting VR playable experience for Oculus Quest](OculusExport.md)
 1. 	For desktop -- tutorial coming soon
 
 
