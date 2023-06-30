@@ -3,6 +3,7 @@
 ![](images/toolkit.jpg)
 
 [Skip to How-To ⏩](howto.md)
+
 [Skip to How-To-VR ⏩](howtoVR.md)
 
 ## What is it
