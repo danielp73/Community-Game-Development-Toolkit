@@ -85,6 +85,7 @@ The toolkit has been presented at numerous conferences, workshops and exhibition
 
 ## How to use the toolkit
 [Go to How To page](howto.md)
+
 [Go to How To VR page](howtoVR.md)
 
 ## Get involved / questions / contact
