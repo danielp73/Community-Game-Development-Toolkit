@@ -13,7 +13,7 @@
 3. [Import the Commuity Game Development Toolkit into the project you just created](ImportToolkit.md)
 
 ## Jump in -- create a scene using provided example assets  
-3. [Create your first simple scene using assets included in the template project by following this tutorial](Tutorial-Using-Example-Assets.md)
+3. [Create your first simple scene using assets included in the template project by following this tutorial](Tutorial-Using-Example-Assets-VR.md)
 
 ## Create and use your own assets
 1. 	[Creating photo cut-outs](CreatingArtwork-Photos.md)
