@@ -37,7 +37,7 @@
 10. Open Advaced Project Settings by clicking the ⚙️ in the top right corner
    ![](images/VRSettings/10.png)
 
-11. Enable Pre-release Packages by clicking the check box, click yes for the poppup
+11. Enable Pre-release Packages by clicking the check box, click "I Understand" for the poppup
   ![](images/VRSettings/11.png)
 
 12. Go back to the Package Manager, Window ➡️ Package Manager,
