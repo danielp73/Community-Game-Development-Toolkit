@@ -63,18 +63,18 @@ Using the toolkt is easy! Get a taste of how to use it by experimenting with exa
 
 ## Add a movable player to the scene
 
-![image](images/add-player.jpg)
-
-* Find the CGDT Components --> Player Flying folder in the Project panel
-* Drag Player-Flying to the scene
-* Note: Player-Flying is a player that moves around freely in 3D space. Player-Grounded moves only along the ground.
+* Find the CGDT Components --> Player-VR and locate the prefab inside
+* Drag VR Player Locomotion into the scene
+* Note: VR Player Locomotion is set up with all movement controls for movement on a ground plane.
 
 ## Play the scene!
 
+* Connect the Quest 2 headset via airlink to your computer
 * Press Command-P (mac) / Control-P (windows) to enter Play mode
 * Or, press the play button above the Scene Panel
-* Use the mouse to look around
-* Use the arrow keys, or ASDW keys to move the character through the scene
+* Use the left joystick to move around
+* Use right joystick to change viewing angle
+* And move you head while wearing the headset to look around.
 
 ## Now add a scene change
 ![](images/addscenechange.jpg)
