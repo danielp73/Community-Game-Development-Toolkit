@@ -4,7 +4,7 @@
 
 [Skip to How-To ⏩](howto.md)
 
-[Skip to How-To-VR ⏩](howtoVR.md)
+[Skip to How-To-VR (Experimental) ⏩](howtoVR.md)
 
 ## What is it
 The Community Game Development Toolkit is a set of tools that make it easy and fun for students, artists, researchers and community members to create their own visually rich, interactive 3D environments and story-based games without the use of coding or other specialized game-design skills. Building on the popular 3D game design engine Unity, the toolkit provides intuitive tools for diverse communities to represent their own traditions, rituals and heritages through interactive, visual storytelling. Projects can be built for desktop, mobile and VR applications.
