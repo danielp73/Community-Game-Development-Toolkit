@@ -46,7 +46,7 @@ public class AutoBuildScene : UnityEditor.AssetModificationProcessor
         return paths;
     }
 
-    private static void AddSceneToBuildSettings(string scenePath)
+    public static void AddSceneToBuildSettings(string scenePath)
     {
         List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
 
