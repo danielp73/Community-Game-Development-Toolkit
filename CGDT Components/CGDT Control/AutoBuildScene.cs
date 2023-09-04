@@ -44,17 +44,21 @@ public class AutoBuildScene : UnityEditor.AssetModificationProcessor
 
         // unity only saves the paths that you return here, so we always pass through everything we received.
         return paths;
-    }
+    } 
 
     public static void AddSceneToBuildSettings(string scenePath)
     {
-        List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
+       //replace backslashes in scenePath with forward slashes
+       scenePath = scenePath.Replace(@"\", "/");
+       
 
-        // only bother adding scenes we don't have already.
+        List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
         foreach (EditorBuildSettingsScene scene in scenes)
         {
             if (scene.path == scenePath)
+            { 
                 return;
+            }
         }
 
         Debug.Log("[CGDT] Added new scene: " + scenePath + " to build settings");
