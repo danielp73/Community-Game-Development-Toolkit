@@ -74,6 +74,18 @@ Toolkit used as part of a VR and performance installation at Practice Gallery, P
 ![](images/slsa-chris.jpg)
 ![](images/slsa-pratistha.jpg)
 
+### Student work using the Toolkit
+
+![](images/student3.jpeg)   
+Fangrou Zhou, student in New Media Arts Program, Baruch College, CUNY. Game world imagining participating in a Chinese reality music television show.
+
+![](images/student0.jpeg)   
+Nehemiah Lucena, student in New Media Arts Program, Baruch College, CUNY. Game scene remembering life before giving up the use of substances.
+
+![](images/student4.jpeg)  
+Sonam Lama, student in New Media Arts Program, Baruch College, CUNY
+
+
 
 ## Context
 
