@@ -18,12 +18,12 @@ public class TextureImport : AssetPostprocessor
         if (assetName.EndsWith(".png") || assetName.EndsWith(".PNG") || assetName.EndsWith(".jpg") || assetName.EndsWith(".JPG") || assetName.EndsWith(".jpeg") || assetName.EndsWith(".JPEG"))
         {
             Debug.Log("CGDT: Imported image");
-            //if (EditorUtility.DisplayDialog("Import","Import image as Sprite to use as an image texture in a scene?", "Yes", "Do not make it a Sprite"))
+            //if (EditorUtility.DisplayDialog("Import", "Import image as Sprite to use as an image texture in a scene?", "Yes", "Do not make it a Sprite"))
             //{
             //    //set texture type to sprite
             //    textureImporter.textureType = TextureImporterType.Sprite;
             //}
-            //textureImporter.textureType = TextureImporterType.Sprite;
+            textureImporter.textureType = TextureImporterType.Sprite;
         }
 
         //int dotLocation = assetName.LastIndexOf(".");
