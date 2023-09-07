@@ -83,7 +83,7 @@ Nehemiah Lucena, student in New Media Arts Program, Baruch College, CUNY. Game s
 Sonam Lama, student in New Media Arts Program, Baruch College, CUNY
 
 ![](images/stockton-student-areeb.jpg)  
-Areeb Kahn, student in Digital Studies at Stockton University. Game scene imagining dream home for student's family.
+Areeb Khan, student in Digital Studies at Stockton University. Game scene imagining dream home for student's family.
 
 
 
