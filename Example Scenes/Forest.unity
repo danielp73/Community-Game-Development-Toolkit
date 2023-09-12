@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenePath: Assets/Community-Game-Development-Toolkit/Example Scenes/Snow.unity
-  sceneIndex: 1
+  sceneIndex: 2
   isVisible: 1
   isSceneChange: 0
 --- !u!212 &2051658109

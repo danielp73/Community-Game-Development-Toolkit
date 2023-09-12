@@ -19,7 +19,7 @@ public class TextureImport : AssetPostprocessor
         {
             Debug.Log("CGDT: Imported image");
             //if (EditorUtility.DisplayDialog("Import", "Import image as Sprite to use as an image texture in a scene?", "Yes", "Do not make it a Sprite"))
-            //{
+            //{ 
             //    //set texture type to sprite
             //    textureImporter.textureType = TextureImporterType.Sprite;
             //}
