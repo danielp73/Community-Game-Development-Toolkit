@@ -23,22 +23,19 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 
 ## Coming soon
 
-
-* VR pipeline for Meta Quest 2
 * Use video/moving image textures
 * Interactive text
 * Simple animated materials
 * Title screens and pause screens
-
 * And more...
 
 ## Long Term Goals
 
+* Create web-based database of projects created using the toolkit
 * Arrange and compose visual assets in an interactive game mode rather than in the Unity Editor
 * Create scene changes in an interactive game mode
 * --> provide workflow for avoiding the use of the Untiy environment all together
 * Arrange and compose scenes in VR
-* Create web-based database of projects created using the toolkit
 
 ## Examples
 ### The Raisin Truck Makes Raisins
@@ -74,10 +71,27 @@ Toolkit used as part of a VR and performance installation at Practice Gallery, P
 ![](images/slsa-chris.jpg)
 ![](images/slsa-pratistha.jpg)
 
+### Student work using the Toolkit
 
-## Context
+![](images/student3.jpeg)   
+Fangrou Zhou, student in New Media Arts Program, Baruch College, CUNY. Game world imagining participating in a Chinese reality music television show.
 
-The toolkit is being developed as part of the NSF-funded VR-REU program in immersive visualization and virtual/augmented/mixed reality at the Visualization and Virtual Reality Lab at Hunter College, used in the MetaEternity project listed above, taught in games courses at Baruch College, CUNY and other CUNY campuses, plays a consulting role in the Ant Farm Art Building Creative Preservation Initiative (AFAAB) at Antioch College and has been featured in workshops at universities and institutions across the country.
+![](images/student0.jpeg)   
+Nehemiah Lucena, student in New Media Arts Program, Baruch College, CUNY. Game scene remembering life before giving up the use of substances.
+
+![](images/student4.jpeg)  
+Sonam Lama, student in New Media Arts Program, Baruch College, CUNY
+
+![](images/stockton-student-areeb.jpg)  
+Areeb Khan, student in Digital Studies at Stockton University. Game scene imagining dream home for student's family.
+
+
+
+
+
+## Context & Who uses the toolkit
+
+The toolkit is being developed as part of the NSF-funded VR-REU program in immersive visualization and virtual/augmented/mixed reality at the Visualization and Virtual Reality Lab at Hunter College. It is being used to teach game design, worldbuilding and interactivtity at Baruch College, CUNY, Winona State University, University of Nebraska, Lincoln, Stockton University, and other universities. It is also being used by the the MetaEternity project listed above and by other artist and research groups. The toolkit plays a consulting role in the Ant Farm Art Building Creative Preservation Initiative (AFAAB) at Antioch College.
 
 The toolkit has been presented at numerous conferences, workshops and exhibitions including iDMAa at Winona State University (2021, 2022), SLSA at Purdue University (2021, 2022), Museums Without Walls at the Museu sem Parades (2022) the Show Don't Tell Symposium at Culture Push (2021) and the New Media Caucus Showcase at the College Art Association Conference (2021)
 
