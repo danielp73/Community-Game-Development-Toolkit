@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 1732253952}
   - component: {fileID: 1732253951}
   m_Layer: 0
-  m_Name: pottedplant2
+  m_Name: plant TEXT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
