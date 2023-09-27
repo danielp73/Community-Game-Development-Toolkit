@@ -14,17 +14,17 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 ![](images/toolkit-diagram-1.jpg)
 
 * Use your own drawings, paintings and cuts out from photos to create 3D scenes
+* Incorporate DIY 3D scans of objects and rooms
 * Intuitively drag and drop drawings, paintings and photo cut outs into scenes -- toolkit automatically formats images
 * Use transparency in drawings, paintings and photo cut outs to easily create rich, organic visual composition in 3D space
 * Take your own 360-degree photos and use as interactive, photogarphic backgrounds to your scenes
 * Use a flying player (moves freely through 3D space) or a grounded player (moves along a ground plane in the scene) to interact with your scenes
 * Create Scene Change elements -- when the player moves through specified visual elements, they are transported to another scene. Simply designate an element as a scene change, and select the scene the player should be transported to
+* Add interactive caption text to objects in your scene
 * Use scene changes to create interactive visual narrative
 
 ## Coming soon
-
 * Use video/moving image textures
-* Interactive text
 * Simple animated materials
 * Title screens and pause screens
 * And more...
@@ -32,12 +32,29 @@ The Community Game Development Toolkit is a set of tools that make it easy and f
 ## Long Term Goals
 
 * Create web-based database of projects created using the toolkit
-* Arrange and compose visual assets in an interactive game mode rather than in the Unity Editor
-* Create scene changes in an interactive game mode
-* --> provide workflow for avoiding the use of the Untiy environment all together
-* Arrange and compose scenes in VR
+
 
 ## Examples
+### MetaEternity
+
+By Teresa Braun, Ayodamola Okunseinde, June Bee, and Zelong Li
+
+Toolkit used as part of a VR and performance installation at Practice Gallery, Philadelphia
+
+![](images/meta-1.jpg)
+![](images/meta-2.jpg)
+![](images/meta-3.JPG)
+
+### Alliance Project (work in progress)
+
+By Ash Eliza Smith and Samantha Bendix
+
+Project uses Toolkit to facilitate collective world buliding activities with community members in Alliance, Nebraska. Activities and workshops use interactive 3D collage to imagine and speculate about what kinds of public projects and material futures would benefit the community.
+
+![](images/alliance-1.jpg)
+![](images/alliance-2.jpg)
+![](images/alliance-3.JPG)
+
 ### The Raisin Truck Makes Raisins
 
 by Daniel Lichtman with contributions Ian Giles, Helena Haimes, James Prevett, David Baumflek and Johann Arens.
@@ -50,15 +67,6 @@ A collaboratively produced interactive 3D environment that uses collage, abstrac
 ![](images/rt-mountain.jpg)
 ![](images/rt-mouse.jpg)
 
-### MetaEternity
-
-By Teresa Braun, Ayodamola Okunseinde, June Bee, and Zelong Li
-
-Toolkit used as part of a VR and performance installation at Practice Gallery, Philadelphia
-
-![](images/meta-1.jpg)
-![](images/meta-2.jpg)
-![](images/meta-3.JPG)
 
 ### Collaborative Worldbuilding workshop at Museums Without Walls Conference, Museu sem Paredes / Queens University, 2022
 
