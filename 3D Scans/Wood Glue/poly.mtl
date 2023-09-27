@@ -1,0 +1,12 @@
+# Created by Polycam
+# object name: poly
+newmtl poly_0
+Ka 0.000 0.000 0.000
+Kd 1.000 1.000 1.000
+Ks 0.000 0.000 0.000
+Tr 0.000000
+illum 1
+Ns 1.000000
+map_Kd poly_0_iqMJkR3D.jpg
+normal poly_0_norm_iqMJkR3D.jpg
+map_ao poly_0_occl_iqMJkR3D.jpg
