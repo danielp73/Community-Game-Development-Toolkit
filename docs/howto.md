@@ -22,7 +22,7 @@
 5. Working with 360-degree photos -- tutorial coming soon
 
 ## Adding interactivity
-1. [Add interactive text to objects] (InteractiveTextTutorial.md)
+1. [Add interactive text to objects](InteractiveTextTutorial.md)
 1. [Add transitions to create multi-scene stories](SceneChangeTutorial.md)
 
 
