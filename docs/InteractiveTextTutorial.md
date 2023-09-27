@@ -29,3 +29,13 @@ Caption text appears when the player approaches the object. To adjust how close 
 * Watch the green sphere around the object in the scene view -- it will grow and shrink as you change the value, indicating how big the area is. Experiment in play mode to get the kind of interactivity you want. 
 
 ![text](images/text-change-zone.jpg)
+
+## Note about adding text to 3D Scans
+
+The component works best if you follow these steps:
+
+* Find the 3D Scan object in the Hierarchy.
+* Click the small gray triangle to expose objects nested inside your scan
+* Drag the Caption Text component to the object inside, often called 'default'. See below:
+
+![text](images/text-3d-scan.jpg)

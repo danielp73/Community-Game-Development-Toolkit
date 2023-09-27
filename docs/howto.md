@@ -21,8 +21,10 @@
 4. [Adding 3D Scans to your scene](MakeYourOwn3DScansWithPolycam.md)
 5. Working with 360-degree photos -- tutorial coming soon
 
-## Creating scene changes
+## Adding interactivity
+1. [Add interactive text to objects] (InteractiveTextTutorial.md)
 1. [Add transitions to create multi-scene stories](SceneChangeTutorial.md)
+
 
 
 ## Exporting and sharing your project
