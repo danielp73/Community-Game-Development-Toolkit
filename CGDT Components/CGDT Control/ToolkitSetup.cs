@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+#if UNITY_EDITOR
+
 class MyClass
 {
     [InitializeOnLoadMethod]
@@ -22,3 +24,5 @@ class MyClass
 
     }
 }
+
+#endif
