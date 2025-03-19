@@ -1,5 +1,3 @@
-# The Community Game Development Toolkit
-
 ![](images/toolkit.jpg)
 
 [Skip to How-To ⏩](howto.md)
@@ -9,32 +7,21 @@
 ## What is it
 The Community Game Development Toolkit is a set of tools that make it easy and fun for students, artists, researchers and community members to create their own visually rich, interactive 3D environments and story-based games without the use of coding or other specialized game-design skills. Building on the popular 3D game design engine Unity, the toolkit provides intuitive tools for diverse communities to represent their own traditions, rituals and heritages through interactive, visual storytelling. Projects can be built for desktop, mobile and VR applications.
 
-## Toolkit functionality
+## Projects Created with the Communtiy Game Development Toolkit
+### In The Middle
 
-![](images/toolkit-diagram-1.jpg)
+By Ash Eliza Smith, Samantha Bendix and Daniel Lichtman
 
-* Use your own drawings, paintings and cuts out from photos to create 3D scenes
-* Incorporate DIY 3D scans of objects and rooms
-* Intuitively drag and drop drawings, paintings and photo cut outs into scenes -- toolkit automatically formats images
-* Use transparency in drawings, paintings and photo cut outs to easily create rich, organic visual composition in 3D space
-* Take your own 360-degree photos and use as interactive, photogarphic backgrounds to your scenes
-* Use a flying player (moves freely through 3D space) or a grounded player (moves along a ground plane in the scene) to interact with your scenes
-* Create Scene Change elements -- when the player moves through specified visual elements, they are transported to another scene. Simply designate an element as a scene change, and select the scene the player should be transported to
-* Add interactive caption text to objects in your scene
-* Use scene changes to create interactive visual narrative
+Project explores how worldbuilding, speculative fiction, and co-creation can shape collective futures, imagining new possibilities for community-driven innovation. Our project, The Middle, is a prototype for a digital platform—a story engine—where all communities, regardless of size or location, can archive their hopes and dreams through interactive tools like 3D collage, storytelling, pen drawings, and audio recordings. The platform, a game-like environment, invites audiences to navigate these creative contributions at their own pace, fostering an inclusive and collaborative space for imagination and action. Ultimately, The Middle is designed to serve as a repository for the future vision and desires of any community or collective, supporting communities to reimagine collective futures in complex realities.
 
-## Coming soon
-* Use video/moving image textures
-* Simple animated materials
-* Title screens and pause screens
-* And more...
+In this pilot implementation of the platform, a series of interactive virtual worlds were developed during worldbuilding sessions in a rural town in Nebraska, engaging individuals affected by Substance Use Disorder as well as school students, healthcare workers and members of other communities. Community members co-created stories and innovative solutions to questions regarding the future of community health and wellbeing. Participants then composed a series of interactive scenes to express and reflect on these ideas using 3D scans of local physical and cultural geography, photos, drawings, illustrations, and audio recordings.
 
-## Long Term Goals
+[More Info](https://www.daniellichtman.com/middle/)
 
-* Create web-based database of projects created using the toolkit
+![](images/alliance-1.jpg)
+![](images/alliance-2.jpg)
+![](images/alliance-3.JPG)
 
-
-## Examples
 ### MetaEternity
 
 By Teresa Braun, Ayodamola Okunseinde, June Bee, and Zelong Li
@@ -44,16 +31,6 @@ Toolkit used as part of a VR and performance installation at Practice Gallery, P
 ![](images/meta-1.jpg)
 ![](images/meta-2.jpg)
 ![](images/meta-3.JPG)
-
-### Alliance Project (work in progress)
-
-By Ash Eliza Smith and Samantha Bendix
-
-Project uses Toolkit to facilitate collective world buliding activities with community members in Alliance, Nebraska. Activities and workshops use interactive 3D collage to imagine and speculate about what kinds of public projects and material futures would benefit the community.
-
-![](images/alliance-1.jpg)
-![](images/alliance-2.jpg)
-![](images/alliance-3.JPG)
 
 ### The Raisin Truck Makes Raisins
 
