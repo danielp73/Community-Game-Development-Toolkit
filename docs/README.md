@@ -89,7 +89,7 @@ The toolkit has been presented at numerous conferences, workshops and exhibition
 [Go to How To VR page](howtoVR.md)
 
 ## Get involved / questions / contact
-Contact Daniel Lichtman at daniel.lichtman at stockton dot edu.
+Contact Daniel Lichtman at lichtmad at stjohns dot edu.
 
 <!---- begin statcounter ---->
 <script type="text/javascript">
