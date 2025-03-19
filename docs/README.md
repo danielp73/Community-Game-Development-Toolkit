@@ -22,6 +22,19 @@ In this pilot implementation of the platform, a series of interactive virtual wo
 ![](images/alliance-2.jpg)
 ![](images/alliance-3.JPG)
 
+### Blanket Forts and Other Assemblages: Special Issue of Hyperrhiz Journal of New Media Culture
+
+Blanket Forts and Other Assemblages, a special issue of Hyperrhiz, is presented as a series of virtual 3D worlds, playable through a web browser. Projects were selected from an open call, in which contributors were prompted to create interactive worlds inspired by the idea of the houseboat, campsite, terrarium, diorama and other varieties of constructed environments, either real or imagined, that facilitate new modalities of intimacy and collectivity. 
+
+The resulting projects in this special issue of Hyperrhiz demonstrate how collage-based worldbuilding can facilitate new poetic possibilities in virtual storytelling. These digital spaces include make-shift geoships, ancestral homes, small gardens, exploratoriums and bisexual bedrooms. Projects explore how memories, intimate spaces, and architectural bodies can be reconstituted in virtual space—here, fragments of our past may tell us something about our possible futures. Many of these reconstitutions are partial— 3D assets are glitched, scans are incomplete, bodies (both human/nonhuman and architectural) are both there and not there (erased, as they were). 
+
+[More Info](http://hyperrhiz.io/hyperrhiz27/)
+
+![](http://media.hyperrhiz.io/hyperrhiz27/abby/shots/img3.jpg)
+![](http://media.hyperrhiz.io/hyperrhiz27/khoshooee/shots/img1.jpg)
+![](http://media.hyperrhiz.io/hyperrhiz27/camille/thumb.jpg)
+
+
 ### MetaEternity
 
 By Teresa Braun, Ayodamola Okunseinde, June Bee, and Zelong Li
