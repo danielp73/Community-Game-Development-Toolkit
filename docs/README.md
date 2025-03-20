@@ -18,9 +18,9 @@ In this pilot implementation of the platform, a series of interactive virtual wo
 
 [More Info](https://www.daniellichtman.com/middle/)
 
-![](images/alliance-1.jpg)
-![](images/alliance-2.jpg)
-![](images/alliance-3.JPG)
+![](https://www.daniellichtman.com/middle/images/headline.png)
+![](https://www.daniellichtman.com/middle/images/new2.jpg)
+![](https://www.daniellichtman.com/middle/images/new4.jpg)
 
 ### Blanket Forts and Other Assemblages: Special Issue of Hyperrhiz Journal of New Media Culture
 
