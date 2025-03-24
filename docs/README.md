@@ -22,6 +22,8 @@ In this pilot implementation of the platform, a series of interactive virtual wo
 ![](https://www.daniellichtman.com/middle/images/new2.jpg)
 ![](https://www.daniellichtman.com/middle/images/new4.jpg)
 
+
+
 ### Blanket Forts and Other Assemblages: Special Issue of Hyperrhiz Journal of New Media Culture
 
 Blanket Forts and Other Assemblages, a special issue of Hyperrhiz, is presented as a series of virtual 3D worlds, playable through a web browser. Projects were selected from an open call, in which contributors were prompted to create interactive worlds inspired by the idea of the houseboat, campsite, terrarium, diorama and other varieties of constructed environments, either real or imagined, that facilitate new modalities of intimacy and collectivity. 
@@ -30,10 +32,11 @@ The resulting projects in this special issue of Hyperrhiz demonstrate how collag
 
 [More Info](http://hyperrhiz.io/hyperrhiz27/)
 
-![](http://media.hyperrhiz.io/hyperrhiz27/abby/shots/img3.jpg)
-![](http://media.hyperrhiz.io/hyperrhiz27/khoshooee/shots/img1.jpg)
-![](http://media.hyperrhiz.io/hyperrhiz27/camille/thumb.jpg)
-
+Pictured projects by Abby Grobbel, Bahareh Khoshooee, Camille Intson and Parsons & Charlesworth:
+![](https://daniellichtman.com/images/hyperrhiz-abby.jpg)
+![](https://daniellichtman.com/images/hyperrhiz-bahareh.jpg)
+![](https://daniellichtman.com/images/hyperrhiz-camille.jpg)
+![](https://daniellichtman.com/images/hyperrhiz-parsons.jpg)
 
 ### MetaEternity
 
