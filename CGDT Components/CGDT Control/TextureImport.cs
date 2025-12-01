@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 
 using UnityEditor;
 using UnityEngine;
@@ -24,6 +24,8 @@ public class TextureImport : AssetPostprocessor
             //    textureImporter.textureType = TextureImporterType.Sprite;
             //}
             textureImporter.textureType = TextureImporterType.Sprite;
+            textureImporter.spriteImportMode = SpriteImportMode.Single;
+
         }
 
         //int dotLocation = assetName.LastIndexOf(".");
