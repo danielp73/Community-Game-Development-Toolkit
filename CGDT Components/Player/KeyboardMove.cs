@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyboardMoveGrounded : MonoBehaviour
+public class KeyboardMove : MonoBehaviour
 {
+
+    public bool flying = false;
+    
     public float speed = 6.0f;
     public float gravity = -10f;
     public float jumpSpeed = 15.0f;
     public float minFall = -1.5f;
     public float pushForce = 3.0f;
+
+
         
     private float _vertSpeed;
 
@@ -19,6 +24,12 @@ public class KeyboardMoveGrounded : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(flying)
+        {
+            gravity = 0f;
+            minFall = 0f;
+        }
+
         _charController = GetComponent<CharacterController>();
         _vertSpeed = minFall;
 
