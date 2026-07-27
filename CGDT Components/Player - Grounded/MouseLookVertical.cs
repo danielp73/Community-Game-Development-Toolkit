@@ -10,16 +10,18 @@ public class MouseLookVertical : MonoBehaviour
 
     private float _rotationX = 0;
 
+    private ToolkitInput input;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        input = GetComponentInParent<ToolkitInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _rotationX -= Input.GetAxis("Mouse Y") * sensitivityVert;
+        _rotationX -= input.Look.y * sensitivityVert;
         _rotationX = Mathf.Clamp(_rotationX, minimumVert, maximumVert);
 
         float rotationY = transform.localEulerAngles.y;

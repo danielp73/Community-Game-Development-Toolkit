@@ -14,26 +14,34 @@ public class KeyboardMoveGrounded : MonoBehaviour
 
     private CharacterController _charController;
 
+    private ToolkitInput input;
+
     // Start is called before the first frame update
     void Start()
     {
         _charController = GetComponent<CharacterController>();
         _vertSpeed = minFall;
+
+        input = GetComponent<ToolkitInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        float deltaZ = Input.GetAxis("Vertical") * speed;
-        Vector3 movement = new Vector3(deltaX, 0, deltaZ);
+        Vector2 move = input.Move;
+        if(move.SqrMagnitude() > .01)
+        {
+            Debug.Log(move);
+        }
+        Vector3 movement = new Vector3(move.x, 0, move.y) * speed;
+
         movement = Vector3.ClampMagnitude(movement, speed);
 
         //check if character is on the ground
         if (_charController.isGrounded)
         {
             //check if we've pressed 'jump'
-            if (Input.GetButtonDown("Jump"))
+            if (input.JumpPressed)
             {
                 //we're on the ground and pressed jump
                 //so add jumpSpeed (a positive vertical speed)
