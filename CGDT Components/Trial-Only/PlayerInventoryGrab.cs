@@ -136,7 +136,7 @@ public class PlayerInventoryGrab : MonoBehaviour
 
         // Disable rigidbody and reset velocities
         item.GetComponent<Rigidbody>().isKinematic = true;
-        item.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        item.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         item.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
         //item.Rb.isKinematic = true;

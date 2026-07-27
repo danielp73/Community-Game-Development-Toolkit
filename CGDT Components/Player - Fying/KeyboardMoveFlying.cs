@@ -70,7 +70,7 @@ public class KeyboardMoveFlying : MonoBehaviour
         if (body != null && !body.isKinematic)
         {
             Debug.Log("pushing");
-            body.velocity = hit.moveDirection * pushForce;
+            body.linearVelocity = hit.moveDirection * pushForce;
         }
     }
 
