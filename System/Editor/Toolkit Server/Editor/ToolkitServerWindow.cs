@@ -10,6 +10,19 @@ public class ToolkitServerWindow : EditorWindow
     private Texture2D qrCode;
     private List<Texture2D> media = new();
     private string errorMessage;
+    
+    //****** new sprite Placement
+
+    private float minPlacementFraction = 0.5f;
+    private float maxPlacementFraction = 2.0f;
+    private float depthMultiplier = 2.0f;
+
+    // Rotation
+    private float maxXRotation = 60f;
+    private float maxYRotation = 60f;
+    private float maxZRotation = 90f;
+    //******
+
 
     private string result = "";
 
@@ -81,9 +94,13 @@ public class ToolkitServerWindow : EditorWindow
 
         foreach (Texture2D texture in media)
         {
-            GUILayout.Label(texture,
+        if (GUILayout.Button(
+            texture,
             GUILayout.Width(128),
-            GUILayout.Height(128));
+            GUILayout.Height(128)))
+        {
+            CreateSprite(texture);
+        }
         }
     }
 
@@ -112,29 +129,83 @@ public class ToolkitServerWindow : EditorWindow
         Repaint();
     }
 
-private async Awaitable RefreshMedia()
-{
-    media.Clear();
-
-    List<string> files = await client.GetMediaAsync(currentSession);
-
-    if (files == null)
+    private async Awaitable RefreshMedia()
     {
-        return;
+        media.Clear();
+
+        List<string> files = await client.GetMediaAsync(currentSession);
+
+        if (files == null)
+        {
+            return;
+        }
+
+        foreach (string file in files)
+        {
+            Texture2D texture =
+                await client.DownloadMediaAsync(currentSession, file);
+
+            if (texture != null)
+            {
+                media.Add(texture);
+            }
+        }
+
+        Repaint();
     }
 
-    foreach (string file in files)
+    private void CreateSprite(Texture2D texture)
     {
-        Texture2D texture =
-            await client.DownloadMediaAsync(currentSession, file);
+        GameObject obj = new GameObject("Toolkit Image");
 
-        if (texture != null)
+        Undo.RegisterCreatedObjectUndo(obj, "Create Toolkit Image");
+
+        SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
+
+        Sprite sprite = Sprite.Create(
+            texture,
+            new Rect(0, 0, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f),
+            100f
+        );
+
+        renderer.sprite = sprite;
+
+        Bounds bounds = renderer.bounds;
+        float size = Mathf.Max(bounds.size.x, bounds.size.y);
+
+        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        float distance = Random.Range(minPlacementFraction, maxPlacementFraction) * size;
+
+        float radius = Random.Range(
+            minPlacementFraction,
+            maxPlacementFraction
+        ) * size;
+
+        Vector3 position = Random.onUnitSphere * radius;
+
+        // Optional: emphasize depth
+        position.z *= depthMultiplier;
+
+        obj.transform.position = position;
+
+        obj.transform.position = position;
+
+        obj.transform.rotation = Quaternion.Euler(
+            Random.Range(-maxXRotation, maxXRotation),
+            Random.Range(-maxYRotation, maxYRotation),
+            Random.Range(-maxZRotation, maxZRotation)
+        );
+
+        Selection.activeGameObject = obj;
+
+        SceneView sceneView = SceneView.lastActiveSceneView;
+
+        if (sceneView != null)
         {
-            media.Add(texture);
+            sceneView.Frame(renderer.bounds, false);
         }
     }
 
-    Repaint();
-}
 
 }
