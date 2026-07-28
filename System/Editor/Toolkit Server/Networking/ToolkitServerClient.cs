@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class ToolkitServerClient
 {
@@ -42,13 +43,49 @@ public class ToolkitServerClient
         return DownloadHandlerTexture.GetContent(request);
     }
 
-    public async Awaitable Test()
+    public async Awaitable<List<string>> GetMediaAsync(Session session)
     {
-        using var request = UnityWebRequest.Get("http://localhost:3000");
+        using var request = UnityWebRequest.Get(
+            $"{baseUrl}/api/session/{session.sessionId}/uploads"
+        );
 
         await request.SendWebRequest();
 
-        Debug.Log("Finished");
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(request.error);
+            return null;
+        }
+
+        Debug.Log("media list: " + request.downloadHandler.text);
+
+        MediaList mediaList = JsonUtility.FromJson<MediaList>(
+            request.downloadHandler.text
+        );
+
+        return mediaList.media;
+    }
+
+    public async Awaitable<Texture2D> DownloadMediaAsync(Session session, string filename)
+    {
+        string url = $"{baseUrl}/uploads/{session.sessionId}/{filename}";
+
+        using var request = UnityWebRequestTexture.GetTexture(url);
+ 
+        Debug.Log("requesting: " + url);
+        
+        await request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(request.error);
+            return null;
+        } else
+        {
+            
+        }
+
+        return DownloadHandlerTexture.GetContent(request);
     }
 
 }

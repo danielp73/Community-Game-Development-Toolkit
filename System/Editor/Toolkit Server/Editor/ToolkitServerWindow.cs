@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ToolkitServerWindow : EditorWindow
 {
@@ -7,6 +8,8 @@ public class ToolkitServerWindow : EditorWindow
 
     private Session currentSession;
     private Texture2D qrCode;
+    private List<Texture2D> media = new();
+    private string errorMessage;
 
     private string result = "";
 
@@ -32,7 +35,14 @@ public class ToolkitServerWindow : EditorWindow
             _ = StartSession();
 
         }
+        
+        // show error
+        if (!string.IsNullOrEmpty(errorMessage))
+        {
+            EditorGUILayout.HelpBox(errorMessage, MessageType.Error);
+        }
 
+        //if session, show info
         if (currentSession != null)
         {
             EditorGUILayout.Space();
@@ -59,18 +69,72 @@ public class ToolkitServerWindow : EditorWindow
         GUILayout.Label("Result:");
 
         EditorGUILayout.HelpBox(result, MessageType.Info);
+
+        // refresh button
+        if (currentSession != null)
+        {
+            if (GUILayout.Button("Refresh Media"))
+            {
+                _ = RefreshMedia();
+            }
+        }
+
+        foreach (Texture2D texture in media)
+        {
+            GUILayout.Label(texture,
+            GUILayout.Width(128),
+            GUILayout.Height(128));
+        }
     }
 
     private async Awaitable StartSession()
     {
+        errorMessage = "";
+        currentSession = null;
+        qrCode = null;
+
         currentSession = await client.StartSessionAsync();
 
-        if (currentSession != null)
+        if (currentSession == null)
         {
-            qrCode = await client.GetQRCodeAsync(currentSession);
+            errorMessage = "Could not connect to Toolkit Server.";
+            Repaint();
+            return;
+        }
+
+        qrCode = await client.GetQRCodeAsync(currentSession);
+
+        if (qrCode == null)
+        {
+            errorMessage = "Could not download QR code.";
         }
 
         Repaint();
     }
+
+private async Awaitable RefreshMedia()
+{
+    media.Clear();
+
+    List<string> files = await client.GetMediaAsync(currentSession);
+
+    if (files == null)
+    {
+        return;
+    }
+
+    foreach (string file in files)
+    {
+        Texture2D texture =
+            await client.DownloadMediaAsync(currentSession, file);
+
+        if (texture != null)
+        {
+            media.Add(texture);
+        }
+    }
+
+    Repaint();
+}
 
 }
