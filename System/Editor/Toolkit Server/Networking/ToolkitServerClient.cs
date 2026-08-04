@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 public class ToolkitServerClient
 {
-    private const string baseUrl = "http://localhost:3000";
+    private readonly string baseUrl;
+
+    public ToolkitServerClient(string baseUrl)
+    {
+        this.baseUrl = baseUrl.TrimEnd('/');
+    }
 
     public async Awaitable<Session> StartSessionAsync()
     {
@@ -23,7 +28,14 @@ public class ToolkitServerClient
             return null;
         }
 
-        return JsonUtility.FromJson<Session>(request.downloadHandler.text);
+        Session session = JsonUtility.FromJson<Session>(request.downloadHandler.text);
+
+        if (session != null)
+        {
+            session.sessionURL = $"{baseUrl}/session/{session.sessionId}";
+        }
+
+        return session;
     }
 
     public async Awaitable<Texture2D> GetQRCodeAsync(Session session)

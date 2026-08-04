@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class ToolkitServerWindow : EditorWindow
 {
+    private const string LocalServerUrl = "http://localhost:8000";
+    private const string HostedServerUrl = "https://share.communitytoolkit.org";
+
+    [SerializeField]
+    private bool developmentMode = true;
+
     private ToolkitServerClient client;
 
     private Session currentSession;
@@ -26,6 +32,8 @@ public class ToolkitServerWindow : EditorWindow
 
     private string result = "";
 
+    private string ServerUrl => developmentMode ? LocalServerUrl : HostedServerUrl;
+
     [MenuItem("Game-Toolkit/Developer/Toolkit Server")]
     public static void ShowWindow()
     {
@@ -34,12 +42,24 @@ public class ToolkitServerWindow : EditorWindow
 
     private void OnEnable()
     {
-        client = new ToolkitServerClient();
+        client = new ToolkitServerClient(ServerUrl);
     }
 
     private void OnGUI()
     {
         GUILayout.Label("Toolkit Server", EditorStyles.boldLabel);
+
+        GUILayout.Space(10);
+
+        EditorGUI.BeginChangeCheck();
+        developmentMode = EditorGUILayout.Toggle("Development Mode", developmentMode);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            SwitchServer();
+        }
+
+        EditorGUILayout.LabelField("Server", ServerUrl, EditorStyles.miniLabel);
 
         GUILayout.Space(10);
 
@@ -64,7 +84,15 @@ public class ToolkitServerWindow : EditorWindow
 
             EditorGUILayout.LabelField("Session ID", currentSession.sessionId);
 
-            EditorGUILayout.LabelField("URL", currentSession.sessionURL);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("URL");
+
+            if (EditorGUILayout.LinkButton(currentSession.sessionURL))
+            {
+                Application.OpenURL(currentSession.sessionURL);
+            }
+
+            EditorGUILayout.EndHorizontal();
 
             if (qrCode != null)
             {
@@ -102,6 +130,16 @@ public class ToolkitServerWindow : EditorWindow
             CreateSprite(texture);
         }
         }
+    }
+
+    private void SwitchServer()
+    {
+        client = new ToolkitServerClient(ServerUrl);
+        currentSession = null;
+        qrCode = null;
+        media.Clear();
+        errorMessage = "";
+        result = "";
     }
 
     private async Awaitable StartSession()
@@ -147,6 +185,7 @@ public class ToolkitServerWindow : EditorWindow
 
             if (texture != null)
             {
+                texture.name = file;
                 media.Add(texture);
             }
         }
@@ -170,6 +209,14 @@ public class ToolkitServerWindow : EditorWindow
         );
 
         renderer.sprite = sprite;
+
+        ToolkitSceneObject trackedObject = Undo.AddComponent<ToolkitSceneObject>(obj);
+        string sourceAssetPath = AssetDatabase.GetAssetPath(texture);
+        if (string.IsNullOrEmpty(sourceAssetPath))
+        {
+            sourceAssetPath = texture.name;
+        }
+        trackedObject.Initialize(sourceAssetPath);
 
         Bounds bounds = renderer.bounds;
         float size = Mathf.Max(bounds.size.x, bounds.size.y);
