@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ToolkitServerWindow : EditorWindow
 {
     private const string LocalServerUrl = "http://localhost:8000";
-    private const string HostedServerUrl = "https://share.communitytoolkit.org";
+    private const string HostedServerUrl = "https://share.communitygametoolkit.org";
 
     [SerializeField]
     private bool developmentMode = true;
@@ -16,6 +16,8 @@ public class ToolkitServerWindow : EditorWindow
     private Texture2D qrCode;
     private List<Texture2D> media = new();
     private string errorMessage;
+    private bool isPublishing;
+    private string publishedSceneUrl;
     
     //****** new sprite Placement
 
@@ -111,6 +113,32 @@ public class ToolkitServerWindow : EditorWindow
 
         EditorGUILayout.HelpBox(result, MessageType.Info);
 
+        GUILayout.Space(10);
+        GUILayout.Label("Scene Publishing", EditorStyles.boldLabel);
+
+        using (new EditorGUI.DisabledScope(isPublishing))
+        {
+            string publishButtonLabel = isPublishing ? "Publishing..." : "Publish Active Scene";
+
+            if (GUILayout.Button(publishButtonLabel))
+            {
+                _ = PublishActiveScene();
+            }
+        }
+
+        if (!string.IsNullOrEmpty(publishedSceneUrl))
+        {
+            if (EditorGUILayout.LinkButton(publishedSceneUrl))
+            {
+                Application.OpenURL(publishedSceneUrl);
+            }
+
+            if (GUILayout.Button("Copy Scene URL"))
+            {
+                GUIUtility.systemCopyBuffer = publishedSceneUrl;
+            }
+        }
+
         // refresh button
         if (currentSession != null)
         {
@@ -140,6 +168,7 @@ public class ToolkitServerWindow : EditorWindow
         media.Clear();
         errorMessage = "";
         result = "";
+        publishedSceneUrl = "";
     }
 
     private async Awaitable StartSession()
@@ -190,6 +219,51 @@ public class ToolkitServerWindow : EditorWindow
             }
         }
 
+        Repaint();
+    }
+
+    private async Awaitable PublishActiveScene()
+    {
+        errorMessage = "";
+        result = "Building scene bundle...";
+        publishedSceneUrl = "";
+
+        if (!ToolkitSceneSerializer.TryBuildSceneBundle(out ToolkitSceneBundle bundle))
+        {
+            result = "Scene bundle could not be built.";
+            Repaint();
+            return;
+        }
+
+        isPublishing = true;
+        result = "Publishing scene...";
+        Repaint();
+
+        ScenePublishResponse response = null;
+
+        try
+        {
+            response = await client.PublishSceneAsync(bundle);
+        }
+        catch (System.Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+        finally
+        {
+            isPublishing = false;
+        }
+
+        if (response == null || !response.success)
+        {
+            errorMessage = "Could not publish the scene. Check the Console and server logs.";
+            result = "Scene publishing failed.";
+            Repaint();
+            return;
+        }
+
+        publishedSceneUrl = response.sceneUrl;
+        result = "Scene published successfully.";
         Repaint();
     }
 

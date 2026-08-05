@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class ToolkitServerClient
 {
@@ -98,6 +100,64 @@ public class ToolkitServerClient
         }
 
         return DownloadHandlerTexture.GetContent(request);
+    }
+
+    public async Awaitable<ScenePublishResponse> PublishSceneAsync(ToolkitSceneBundle bundle)
+    {
+        ScenePublishRequest publishData = new ScenePublishRequest
+        {
+            sceneJson = bundle.json
+        };
+
+        foreach (KeyValuePair<string, byte[]> image in bundle.images)
+        {
+            publishData.images.Add(new ScenePublishImage
+            {
+                fileName = image.Key,
+                base64Data = Convert.ToBase64String(image.Value)
+            });
+        }
+
+        string publishUrl = $"{baseUrl}/api/scenes/{bundle.sceneData.sceneId}/json";
+        string requestJson = JsonUtility.ToJson(publishData);
+
+        using var request = new UnityWebRequest(publishUrl, UnityWebRequest.kHttpVerbPOST);
+        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(requestJson));
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        Debug.Log($"Publishing Toolkit scene to: {publishUrl}");
+        await request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError(
+                $"Scene publish failed ({request.responseCode}): {request.error}\n" +
+                request.downloadHandler.text
+            );
+            return null;
+        }
+
+        ScenePublishResponse response = JsonUtility.FromJson<ScenePublishResponse>(
+            request.downloadHandler.text
+        );
+
+        Debug.Log("Published Toolkit scene: " + response.sceneUrl);
+        return response;
+    }
+
+    [Serializable]
+    private class ScenePublishRequest
+    {
+        public string sceneJson;
+        public List<ScenePublishImage> images = new List<ScenePublishImage>();
+    }
+
+    [Serializable]
+    private class ScenePublishImage
+    {
+        public string fileName;
+        public string base64Data;
     }
 
 }

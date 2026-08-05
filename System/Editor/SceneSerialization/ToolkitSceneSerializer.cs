@@ -29,7 +29,14 @@ public static class ToolkitSceneSerializer
     public static void TestExportSceneJson()
     {
         // Ask for the public-facing name before choosing where to save the JSON.
-        ToolkitSceneNameWindow.ShowWindow();
+        ToolkitSceneNameWindow.ShowWindow(false);
+    }
+
+    [MenuItem("Game-Toolkit/Developer/Test Export Scene Bundle")]
+    public static void TestExportSceneBundle()
+    {
+        // Use the same persistent-name prompt before exporting the complete bundle.
+        ToolkitSceneNameWindow.ShowWindow(true);
     }
 
     // Serializes the active scene and presents Unity's standard save-file dialog.
@@ -61,6 +68,118 @@ public static class ToolkitSceneSerializer
         File.WriteAllText(outputPath, json);
         Debug.Log("Exported Toolkit scene JSON to: " + outputPath);
         EditorUtility.RevealInFinder(outputPath);
+    }
+
+    // Writes scene.json and all referenced images into one portable folder.
+    private static void ExportSceneBundle()
+    {
+        if (!TryBuildSceneBundle(out ToolkitSceneBundle bundle))
+        {
+            return;
+        }
+
+        string defaultFolderName = MakeSafeFileName(bundle.sceneData.title);
+        string outputFolder = EditorUtility.SaveFolderPanel(
+            "Export Toolkit Scene Bundle",
+            "",
+            defaultFolderName
+        );
+
+        if (string.IsNullOrEmpty(outputFolder))
+        {
+            return;
+        }
+
+        string imagesFolder = Path.Combine(outputFolder, "images");
+        Directory.CreateDirectory(imagesFolder);
+
+        foreach (KeyValuePair<string, byte[]> encodedImage in bundle.images)
+        {
+            string imagePath = Path.Combine(imagesFolder, encodedImage.Key);
+            File.WriteAllBytes(imagePath, encodedImage.Value);
+        }
+
+        string jsonPath = Path.Combine(outputFolder, "scene.json");
+        File.WriteAllText(jsonPath, bundle.json);
+
+        Debug.Log("Exported Toolkit scene bundle to: " + outputFolder);
+        EditorUtility.RevealInFinder(outputFolder);
+    }
+
+    // Build one validated bundle in memory so local export and server publishing
+    // always send the exact same JSON and image files.
+    public static bool TryBuildSceneBundle(out ToolkitSceneBundle bundle)
+    {
+        bundle = null;
+
+        Scene scene = SceneManager.GetActiveScene();
+        GetOrCreateSceneMetadata(scene);
+
+        ToolkitSceneData sceneData = Serialize(scene);
+        List<ToolkitSceneObject> trackedImages = FindTrackedImages(scene);
+        Dictionary<string, byte[]> encodedImages = new Dictionary<string, byte[]>();
+
+        foreach (ToolkitSceneObject trackedImage in trackedImages)
+        {
+            string objectId = trackedImage.ObjectId;
+            string imageFileName = objectId + ".png";
+
+            if (encodedImages.ContainsKey(imageFileName))
+            {
+                Debug.LogError("Duplicate Toolkit object ID prevents bundle export: " + objectId);
+                EditorUtility.DisplayDialog(
+                    "Scene Bundle Build Failed",
+                    "Two image objects have the same persistent ID: " + objectId,
+                    "OK"
+                );
+                return false;
+            }
+
+            SpriteRenderer renderer = trackedImage.GetComponent<SpriteRenderer>();
+            if (renderer == null || renderer.sprite == null || renderer.sprite.texture == null)
+            {
+                Debug.LogError("Tracked image has no readable SpriteRenderer: " + trackedImage.name);
+                EditorUtility.DisplayDialog(
+                    "Scene Bundle Build Failed",
+                    "The tracked image '" + trackedImage.name + "' has no sprite texture.",
+                    "OK"
+                );
+                return false;
+            }
+
+            try
+            {
+                encodedImages.Add(imageFileName, renderer.sprite.texture.EncodeToPNG());
+            }
+            catch (UnityException exception)
+            {
+                Debug.LogException(exception);
+                EditorUtility.DisplayDialog(
+                    "Scene Bundle Build Failed",
+                    "The texture on '" + trackedImage.name + "' is not readable and could not be exported.",
+                    "OK"
+                );
+                return false;
+            }
+
+            ToolkitObjectData objectData = sceneData.objects.Find(
+                item => item.objectId == objectId
+            );
+
+            if (objectData != null)
+            {
+                objectData.assetUrl = "images/" + imageFileName;
+            }
+        }
+
+        bundle = new ToolkitSceneBundle
+        {
+            sceneData = sceneData,
+            json = JsonUtility.ToJson(sceneData, true),
+            images = encodedImages
+        };
+
+        return true;
     }
 
     // Scene metadata is stored on a GameObject so Unity saves it inside the
@@ -114,15 +233,33 @@ public static class ToolkitSceneSerializer
             title = publishedName
         };
 
+        // Find the scene's player by looking for its KeyboardMove component.
+        KeyboardMove player = FindPlayer(scene);
+
+        if (player != null)
+        {
+            // Copy the public movement settings and starting transform into JSON data.
+            sceneData.player = new ToolkitPlayerData
+            {
+                flying = player.flying,
+                speed = player.speed,
+                gravity = player.gravity,
+                jumpSpeed = player.jumpSpeed,
+                minFall = player.minFall,
+                pushForce = player.pushForce,
+                position = player.transform.position,
+                rotation = player.transform.eulerAngles
+            };
+        }
+        else
+        {
+            Debug.LogWarning("No player with a KeyboardMove component was found in the active scene.");
+        }
+
         // Search each root and all of its children, including inactive objects.
         // This limits the search to the active scene rather than loaded assets
         // or objects belonging to another open scene.
-        List<ToolkitSceneObject> trackedObjects = new List<ToolkitSceneObject>();
-        foreach (GameObject rootObject in scene.GetRootGameObjects())
-        {
-            // Include tracked objects nested anywhere below this root.
-            trackedObjects.AddRange(rootObject.GetComponentsInChildren<ToolkitSceneObject>(true));
-        }
+        List<ToolkitSceneObject> trackedObjects = FindTrackedImages(scene);
 
         foreach (ToolkitSceneObject trackedObject in trackedObjects)
         {
@@ -158,6 +295,58 @@ public static class ToolkitSceneSerializer
         return sceneData;
     }
 
+    // Collect all opted-in image objects from this scene, including inactive ones.
+    private static List<ToolkitSceneObject> FindTrackedImages(Scene scene)
+    {
+        List<ToolkitSceneObject> trackedImages = new List<ToolkitSceneObject>();
+
+        foreach (GameObject rootObject in scene.GetRootGameObjects())
+        {
+            // Include tracked objects nested anywhere below this root.
+            ToolkitSceneObject[] trackedObjects =
+                rootObject.GetComponentsInChildren<ToolkitSceneObject>(true);
+
+            foreach (ToolkitSceneObject trackedObject in trackedObjects)
+            {
+                if (trackedObject.includeInPublishedScene && trackedObject.objectType == "image")
+                {
+                    trackedImages.Add(trackedObject);
+                }
+            }
+        }
+
+        return trackedImages;
+    }
+
+    // Remove characters that cannot safely appear in a folder name.
+    private static string MakeSafeFileName(string value)
+    {
+        string safeName = string.IsNullOrWhiteSpace(value) ? "toolkit-scene" : value.Trim();
+
+        foreach (char invalidCharacter in Path.GetInvalidFileNameChars())
+        {
+            safeName = safeName.Replace(invalidCharacter, '-');
+        }
+
+        return safeName;
+    }
+
+    // Find the first player in the active scene, including inactive objects.
+    private static KeyboardMove FindPlayer(Scene scene)
+    {
+        foreach (GameObject rootObject in scene.GetRootGameObjects())
+        {
+            KeyboardMove player = rootObject.GetComponentInChildren<KeyboardMove>(true);
+
+            if (player != null)
+            {
+                return player;
+            }
+        }
+
+        return null;
+    }
+
     // There should normally be one metadata component per scene. Returning the
     // first match keeps this initial implementation small and predictable.
     private static ToolkitSceneMetadata FindSceneMetadata(Scene scene)
@@ -182,8 +371,9 @@ public static class ToolkitSceneSerializer
     private class ToolkitSceneNameWindow : EditorWindow
     {
         private string publishedName;
+        private bool exportBundle;
 
-        public static void ShowWindow()
+        public static void ShowWindow(bool exportBundle)
         {
             // Read the current name so returning users can edit it.
             Scene scene = SceneManager.GetActiveScene();
@@ -192,6 +382,7 @@ public static class ToolkitSceneSerializer
             // Create a small fixed-size utility window rather than a docked tab.
             ToolkitSceneNameWindow window = CreateInstance<ToolkitSceneNameWindow>();
             window.titleContent = new GUIContent("Name Toolkit Scene");
+            window.exportBundle = exportBundle;
             window.publishedName = metadata != null && !string.IsNullOrWhiteSpace(metadata.publishedName)
                 ? metadata.publishedName
                 : scene.name;
@@ -219,7 +410,8 @@ public static class ToolkitSceneSerializer
             EditorGUILayout.Space(8f);
             using (new EditorGUI.DisabledScope(string.IsNullOrWhiteSpace(publishedName)))
             {
-                if (GUILayout.Button("Continue to Export"))
+                string buttonLabel = exportBundle ? "Continue to Export Bundle" : "Continue to Export";
+                if (GUILayout.Button(buttonLabel))
                 {
                     SaveNameAndExport();
                 }
@@ -241,7 +433,15 @@ public static class ToolkitSceneSerializer
 
             // Close this prompt before opening the system save dialog.
             Close();
-            ExportSceneJson();
+
+            if (exportBundle)
+            {
+                ExportSceneBundle();
+            }
+            else
+            {
+                ExportSceneJson();
+            }
         }
     }
 }
