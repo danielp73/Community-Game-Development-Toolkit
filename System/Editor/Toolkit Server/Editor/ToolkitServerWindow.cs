@@ -17,7 +17,7 @@ public class ToolkitServerWindow : EditorWindow
     private List<Texture2D> media = new();
     private string errorMessage;
     private bool isPublishing;
-    private string publishedSceneUrl;
+    private string publishedViewerUrl;
     
     //****** new sprite Placement
 
@@ -126,16 +126,18 @@ public class ToolkitServerWindow : EditorWindow
             }
         }
 
-        if (!string.IsNullOrEmpty(publishedSceneUrl))
+        if (!string.IsNullOrEmpty(publishedViewerUrl))
         {
-            if (EditorGUILayout.LinkButton(publishedSceneUrl))
+            EditorGUILayout.LabelField("Viewer URL", EditorStyles.miniLabel);
+
+            if (EditorGUILayout.LinkButton(publishedViewerUrl))
             {
-                Application.OpenURL(publishedSceneUrl);
+                Application.OpenURL(publishedViewerUrl);
             }
 
-            if (GUILayout.Button("Copy Scene URL"))
+            if (GUILayout.Button("Copy Viewer URL"))
             {
-                GUIUtility.systemCopyBuffer = publishedSceneUrl;
+                GUIUtility.systemCopyBuffer = publishedViewerUrl;
             }
         }
 
@@ -168,7 +170,7 @@ public class ToolkitServerWindow : EditorWindow
         media.Clear();
         errorMessage = "";
         result = "";
-        publishedSceneUrl = "";
+        publishedViewerUrl = "";
     }
 
     private async Awaitable StartSession()
@@ -226,7 +228,7 @@ public class ToolkitServerWindow : EditorWindow
     {
         errorMessage = "";
         result = "Building scene bundle...";
-        publishedSceneUrl = "";
+        publishedViewerUrl = "";
 
         if (!ToolkitSceneSerializer.TryBuildSceneBundle(out ToolkitSceneBundle bundle))
         {
@@ -262,7 +264,11 @@ public class ToolkitServerWindow : EditorWindow
             return;
         }
 
-        publishedSceneUrl = response.sceneUrl;
+        // Show the playable viewer page rather than the underlying scene.json URL.
+        string publishedSceneId = string.IsNullOrWhiteSpace(response.sceneId)
+            ? bundle.sceneData.sceneId
+            : response.sceneId.Trim();
+        publishedViewerUrl = $"{ServerUrl}/viewer/?scene={publishedSceneId}";
         result = "Scene published successfully.";
         Repaint();
     }
