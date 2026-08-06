@@ -238,6 +238,13 @@ public static class ToolkitSceneSerializer
 
         if (player != null)
         {
+            // The camera's pitch is controlled separately from the player root.
+            MouseLookVertical verticalLook =
+                player.GetComponentInChildren<MouseLookVertical>(true);
+            float verticalLookAngle = verticalLook == null
+                ? 0f
+                : Mathf.DeltaAngle(0f, verticalLook.transform.localEulerAngles.x);
+
             // Copy the public movement settings and starting transform into JSON data.
             sceneData.player = new ToolkitPlayerData
             {
@@ -248,8 +255,16 @@ public static class ToolkitSceneSerializer
                 minFall = player.minFall,
                 pushForce = player.pushForce,
                 position = player.transform.position,
-                rotation = player.transform.eulerAngles
+                rotation = player.transform.eulerAngles,
+                verticalLookAngle = verticalLookAngle
             };
+
+            if (verticalLook == null)
+            {
+                Debug.LogWarning(
+                    "The player has no MouseLookVertical component; exporting a neutral look angle."
+                );
+            }
         }
         else
         {

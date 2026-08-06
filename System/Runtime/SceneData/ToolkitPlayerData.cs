@@ -12,4 +12,5 @@ public class ToolkitPlayerData
     public float pushForce;
     public Vector3 position;
     public Vector3 rotation;
+    public float verticalLookAngle;
 }
