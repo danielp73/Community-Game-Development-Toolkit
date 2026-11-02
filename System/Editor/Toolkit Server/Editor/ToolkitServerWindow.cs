@@ -7,11 +7,18 @@ public class ToolkitServerWindow : EditorWindow
     private const string LocalServerUrl = "http://localhost:8000";
     private const string HostedServerUrl = "https://share.communitygametoolkit.org";
 
-    [SerializeField]
-    private bool developmentMode = true;
 
     private ToolkitServerClient client;
 
+    private const double PollInterval = 3.0;
+    private readonly Dictionary<string, Texture2D> downloadedMedia = new();
+    private readonly List<Texture2D> pendingMedia = new();
+    private double nextMediaPoll;
+    private bool isPollingMedia;
+    private bool isStartingSession;
+    private bool panelEnabled;
+    private int sessionGeneration;
+    private string mediaError;
     private Session currentSession;
     private Texture2D qrCode;
     private List<Texture2D> media = new();
@@ -25,50 +32,114 @@ public class ToolkitServerWindow : EditorWindow
     private float maxPlacementFraction = 2.0f;
     private float depthMultiplier = 2.0f;
 
-    // Rotation
-    private float maxXRotation = 60f;
-    private float maxYRotation = 60f;
-    private float maxZRotation = 90f;
     //******
 
 
     private string result = "";
 
-    private string ServerUrl => developmentMode ? LocalServerUrl : HostedServerUrl;
+    private string ServerUrl => ToolkitServerSettings.DevelopmentMode ? LocalServerUrl : HostedServerUrl;
 
-    [MenuItem("Game-Toolkit/Developer/Toolkit Server")]
+    [MenuItem("Game-Toolkit/Add Media from Phone", false, 980)]
+    [MenuItem("Game-Toolkit/Developer/Toolkit Server", false, 2004)]
     public static void ShowWindow()
     {
-        GetWindow<ToolkitServerWindow>("Toolkit Server");
+        // Unity's Inspector type is internal; resolve it only as a docking preference.
+        var inspectorType = typeof(Editor).Assembly.GetType("UnityEditor.InspectorWindow");
+        var window = inspectorType != null
+            ? GetWindow<ToolkitServerWindow>("Toolkit Server", true, inspectorType)
+            : GetWindow<ToolkitServerWindow>("Toolkit Server");
+        window.Show();
+        window.Focus();
     }
 
     private void OnEnable()
     {
+        panelEnabled = true;
+        MergeMediaPreviews(media, pendingMedia, downloadedMedia);
+        SetPreviewRetention(true);
         client = new ToolkitServerClient(ServerUrl);
+        nextMediaPoll = 0;
+        EditorApplication.update -= PollMedia;
+        EditorApplication.update += PollMedia;
+        ToolkitServerSettings.Changed -= OnServerSettingsChanged;
+        ToolkitServerSettings.Changed += OnServerSettingsChanged;
+    }
+
+    private void OnDisable()
+    {
+        panelEnabled = false;
+        SetPreviewRetention(false);
+        sessionGeneration++;
+        EditorApplication.update -= PollMedia;
+        ToolkitServerSettings.Changed -= OnServerSettingsChanged;
+    }
+
+    private void SetPreviewRetention(bool retain)
+    {
+        SetTextureRetention(qrCode, retain);
+        foreach (Texture2D texture in media) SetTextureRetention(texture, retain);
+        foreach (Texture2D texture in pendingMedia) SetTextureRetention(texture, retain);
+    }
+
+    private static void SetTextureRetention(Texture2D texture, bool retain)
+    {
+        if (texture == null) return;
+        if (retain) texture.hideFlags |= HideFlags.DontUnloadUnusedAsset;
+        else texture.hideFlags &= ~HideFlags.DontUnloadUnusedAsset;
+    }
+
+    private void OnServerSettingsChanged()
+    {
+        SwitchServer();
+        Repaint();
+    }
+
+    private static void MergeMediaPreviews(List<Texture2D> visible, List<Texture2D> incoming,
+        Dictionary<string, Texture2D> cache)
+    {
+        // Unity restores the texture list across script reloads, but not the dictionary.
+        // Rebuild both together: a filename always corresponds to exactly one preview.
+        var unique = new Dictionary<string, Texture2D>();
+        var order = new List<string>();
+        void Include(Texture2D texture)
+        {
+            if (texture == null || string.IsNullOrEmpty(texture.name)) return;
+            string filename = texture.name;
+            if (!unique.ContainsKey(filename)) order.Add(filename);
+            unique[filename] = texture;
+        }
+        foreach (Texture2D texture in visible) Include(texture);
+        foreach (Texture2D texture in incoming) Include(texture);
+        visible.Clear();
+        incoming.Clear();
+        cache.Clear();
+        foreach (string filename in order)
+        {
+            Texture2D texture = unique[filename];
+            visible.Add(texture);
+            cache.Add(filename, texture);
+        }
     }
 
     private void OnGUI()
     {
+        // Keep the same thumbnail controls for the complete Layout/Repaint cycle.
+        if (Event.current.type == EventType.Layout)
+        {
+            MergeMediaPreviews(media, pendingMedia, downloadedMedia);
+        }
         GUILayout.Label("Toolkit Server", EditorStyles.boldLabel);
 
         GUILayout.Space(10);
-
-        EditorGUI.BeginChangeCheck();
-        developmentMode = EditorGUILayout.Toggle("Development Mode", developmentMode);
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            SwitchServer();
-        }
 
         EditorGUILayout.LabelField("Server", ServerUrl, EditorStyles.miniLabel);
 
         GUILayout.Space(10);
 
-        if (GUILayout.Button("Start Session"))
+        using (new EditorGUI.DisabledScope(isStartingSession))
         {
-            _ = StartSession();
-
+            if (GUILayout.Button(isStartingSession ? "Starting Session..." : "Start Session"))
+                _ = StartSession();
         }
         
         // show error
@@ -141,29 +212,34 @@ public class ToolkitServerWindow : EditorWindow
             }
         }
 
-        // refresh button
         if (currentSession != null)
         {
-            if (GUILayout.Button("Refresh Media"))
-            {
-                _ = RefreshMedia();
-            }
+            EditorGUILayout.LabelField("New media appears automatically.", EditorStyles.miniLabel);
+            if (!string.IsNullOrEmpty(mediaError))
+                EditorGUILayout.HelpBox(mediaError, MessageType.Warning);
         }
 
         foreach (Texture2D texture in media)
         {
-        if (GUILayout.Button(
-            texture,
-            GUILayout.Width(128),
-            GUILayout.Height(128)))
-        {
-            CreateSprite(texture);
-        }
+            if (texture == null) continue;
+            EditorGUILayout.BeginVertical(GUI.skin.box, GUILayout.Width(150));
+            EditorGUILayout.LabelField(texture.name, EditorStyles.miniLabel, GUILayout.Width(140));
+            Rect preview = GUILayoutUtility.GetRect(128, 128, GUILayout.Width(140), GUILayout.Height(128));
+            bool clicked = GUI.Button(preview, GUIContent.none);
+            if (Event.current.type == EventType.Repaint)
+                EditorGUI.DrawTextureTransparent(preview, texture, ScaleMode.ScaleToFit);
+            if (clicked) CreateSprite(texture);
+            EditorGUILayout.EndVertical();
         }
     }
 
     private void SwitchServer()
     {
+        sessionGeneration++;
+        SetPreviewRetention(false);
+        downloadedMedia.Clear();
+        pendingMedia.Clear();
+        mediaError = null;
         client = new ToolkitServerClient(ServerUrl);
         currentSession = null;
         qrCode = null;
@@ -173,55 +249,118 @@ public class ToolkitServerWindow : EditorWindow
         publishedViewerUrl = "";
     }
 
+    private bool IsCurrentSession(int generation) => panelEnabled && generation == sessionGeneration;
+
     private async Awaitable StartSession()
     {
+        if (isStartingSession) return;
+        isStartingSession = true;
+        int generation = ++sessionGeneration;
+        ToolkitServerClient sessionClient = client;
         errorMessage = "";
+        mediaError = null;
+        SetPreviewRetention(false);
         currentSession = null;
         qrCode = null;
-
-        currentSession = await client.StartSessionAsync();
-
-        if (currentSession == null)
+        media.Clear();
+        downloadedMedia.Clear();
+        pendingMedia.Clear();
+        try
         {
-            errorMessage = "Could not connect to Toolkit Server.";
-            Repaint();
-            return;
+            Session session = await sessionClient.StartSessionAsync();
+            if (!IsCurrentSession(generation)) return;
+            if (session == null)
+            {
+                errorMessage = "Could not connect to Toolkit Server.";
+                return;
+            }
+            currentSession = session;
+            nextMediaPoll = 0;
+            Texture2D code = await sessionClient.GetQRCodeAsync(session);
+            if (!IsCurrentSession(generation))
+            {
+                if (code != null) DestroyImmediate(code);
+                return;
+            }
+            qrCode = code;
+            if (qrCode == null) errorMessage = "Could not download QR code.";
         }
-
-        qrCode = await client.GetQRCodeAsync(currentSession);
-
-        if (qrCode == null)
+        catch (System.Exception exception)
         {
-            errorMessage = "Could not download QR code.";
+            if (IsCurrentSession(generation)) errorMessage = exception.Message;
         }
+        finally
+        {
+            isStartingSession = false;
+            if (panelEnabled) Repaint();
+        }
+    }
 
-        Repaint();
+    private static bool IsImageFile(string file)
+    {
+        if (string.IsNullOrWhiteSpace(file) || file.StartsWith(".") ||
+            file.IndexOfAny(new[] { '/', '\\' }) >= 0) return false;
+        string extension = System.IO.Path.GetExtension(file);
+        return extension.Equals(".png", System.StringComparison.OrdinalIgnoreCase) ||
+            extension.Equals(".jpg", System.StringComparison.OrdinalIgnoreCase) ||
+            extension.Equals(".jpeg", System.StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void PollMedia()
+    {
+        if (!panelEnabled || currentSession == null || isPollingMedia ||
+            EditorApplication.isCompiling || EditorApplication.isUpdating ||
+            EditorApplication.timeSinceStartup < nextMediaPoll) return;
+        _ = RefreshMedia();
     }
 
     private async Awaitable RefreshMedia()
     {
-        media.Clear();
-
-        List<string> files = await client.GetMediaAsync(currentSession);
-
-        if (files == null)
+        isPollingMedia = true;
+        int generation = sessionGeneration;
+        Session session = currentSession;
+        ToolkitServerClient sessionClient = client;
+        try
         {
-            return;
-        }
-
-        foreach (string file in files)
-        {
-            Texture2D texture =
-                await client.DownloadMediaAsync(currentSession, file);
-
-            if (texture != null)
+            List<string> files = await sessionClient.GetMediaAsync(session, true);
+            if (!IsCurrentSession(generation)) return;
+            if (files == null) throw new System.IO.IOException("Could not check for new media. Retrying automatically.");
+            mediaError = null;
+            foreach (string file in files)
             {
+                if (!IsImageFile(file)) continue;
+                if (downloadedMedia.TryGetValue(file, out Texture2D cached) && cached != null) continue;
+                Texture2D texture = await sessionClient.DownloadMediaAsync(session, file, true);
+                if (!IsCurrentSession(generation))
+                {
+                    if (texture != null) DestroyImmediate(texture);
+                    return;
+                }
+                if (texture == null)
+                {
+                    mediaError = "Some media could not be downloaded. Retrying automatically.";
+                    continue;
+                }
                 texture.name = file;
-                media.Add(texture);
+                downloadedMedia[file] = texture;
+                pendingMedia.Add(texture);
             }
         }
-
-        Repaint();
+        catch (System.Exception exception)
+        {
+            if (IsCurrentSession(generation))
+            {
+                string message = "Could not load new media: " + exception.Message + " Retrying automatically.";
+                if (mediaError != message) Debug.LogWarning(message);
+                mediaError = message;
+            }
+        }
+        finally
+        {
+            isPollingMedia = false;
+            nextMediaPoll = EditorApplication.timeSinceStartup + PollInterval;
+            if (panelEnabled) Repaint();
+        }
     }
 
     private async Awaitable PublishActiveScene()
@@ -304,25 +443,12 @@ public class ToolkitServerWindow : EditorWindow
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         float distance = Random.Range(minPlacementFraction, maxPlacementFraction) * size;
 
-        float radius = Random.Range(
-            minPlacementFraction,
-            maxPlacementFraction
-        ) * size;
-
-        Vector3 position = Random.onUnitSphere * radius;
-
-        // Optional: emphasize depth
-        position.z *= depthMultiplier;
-
-        obj.transform.position = position;
-
-        obj.transform.position = position;
-
-        obj.transform.rotation = Quaternion.Euler(
-            Random.Range(-maxXRotation, maxXRotation),
-            Random.Range(-maxYRotation, maxYRotation),
-            Random.Range(-maxZRotation, maxZRotation)
+        obj.transform.position = new Vector3(
+            Mathf.Cos(angle) * distance,
+            bounds.extents.y + 0.05f,
+            Mathf.Sin(angle) * distance * depthMultiplier
         );
+        obj.transform.rotation = Quaternion.identity;
 
         Selection.activeGameObject = obj;
 

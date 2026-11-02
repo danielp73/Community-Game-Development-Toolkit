@@ -12,7 +12,7 @@ public static class ToolkitSceneSerializer
 {
     // Creates (or selects) the scene-level settings object. Its published name
     // and generated scene ID are saved as part of the Unity scene.
-    [MenuItem("Game-Toolkit/Scene Publishing Settings")]
+    [MenuItem("Game-Toolkit/Developer/Scene Publishing Settings", false, 2001)]
     public static void SelectScenePublishingSettings()
     {
         // Work with whichever scene is currently active in the editor.
@@ -25,14 +25,14 @@ public static class ToolkitSceneSerializer
         EditorGUIUtility.PingObject(metadata.gameObject);
     }
 
-    [MenuItem("Game-Toolkit/Developer/Test Export Scene JSON")]
+    [MenuItem("Game-Toolkit/Developer/Test Export Scene JSON", false, 2003)]
     public static void TestExportSceneJson()
     {
         // Ask for the public-facing name before choosing where to save the JSON.
         ToolkitSceneNameWindow.ShowWindow(false);
     }
 
-    [MenuItem("Game-Toolkit/Developer/Test Export Scene Bundle")]
+    [MenuItem("Game-Toolkit/Developer/Test Export Scene Bundle", false, 2002)]
     public static void TestExportSceneBundle()
     {
         // Use the same persistent-name prompt before exporting the complete bundle.

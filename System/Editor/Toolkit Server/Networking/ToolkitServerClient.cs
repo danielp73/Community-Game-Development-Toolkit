@@ -22,6 +22,7 @@ public class ToolkitServerClient
 
         request.downloadHandler = new DownloadHandlerBuffer();
 
+        request.timeout = 30;
         await request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
@@ -46,6 +47,7 @@ public class ToolkitServerClient
             $"{baseUrl}/session/{session.sessionId}/qr"
         );
 
+        request.timeout = 30;
         await request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
@@ -54,52 +56,70 @@ public class ToolkitServerClient
             return null;
         }
 
-        return DownloadHandlerTexture.GetContent(request);
+        Texture2D texture = DownloadHandlerTexture.GetContent(request);
+        if (texture != null) texture.hideFlags = HideFlags.DontUnloadUnusedAsset;
+        return texture;
     }
 
-    public async Awaitable<List<string>> GetMediaAsync(Session session)
+    public async Awaitable<List<string>> GetMediaAsync(Session session, bool quiet = false)
     {
         using var request = UnityWebRequest.Get(
             $"{baseUrl}/api/session/{session.sessionId}/uploads"
         );
 
+        request.timeout = 30;
         await request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError(request.error);
+            if (!quiet) Debug.LogError(request.error);
             return null;
         }
 
-        Debug.Log("media list: " + request.downloadHandler.text);
 
-        MediaList mediaList = JsonUtility.FromJson<MediaList>(
-            request.downloadHandler.text
-        );
 
+        string json = request.downloadHandler.text.Trim();
+        // Hosted and local server releases use different list shapes.
+        if (json.StartsWith("[", StringComparison.Ordinal)) json = "{\"media\":" + json + "}";
+        MediaList mediaList = JsonUtility.FromJson<MediaList>(json);
+        if (mediaList?.media == null)
+            throw new System.IO.InvalidDataException("The server returned an unrecognized media listing.");
         return mediaList.media;
     }
 
-    public async Awaitable<Texture2D> DownloadMediaAsync(Session session, string filename)
+    public async Awaitable<Texture2D> DownloadMediaAsync(Session session, string filename, bool quiet = false)
     {
-        string url = $"{baseUrl}/uploads/{session.sessionId}/{filename}";
-
-        using var request = UnityWebRequestTexture.GetTexture(url);
- 
-        Debug.Log("requesting: " + url);
-        
+        string url = $"{baseUrl}/uploads/{Uri.EscapeDataString(session.sessionId)}/{Uri.EscapeDataString(filename)}";
+        using var request = UnityWebRequest.Get(url);
+        request.timeout = 30;
         await request.SendWebRequest();
-
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError(request.error);
+            if (!quiet) Debug.LogError(request.error);
             return null;
-        } else
-        {
-            
         }
 
-        return DownloadHandlerTexture.GetContent(request);
+        // An HTTP success is not enough: don't cache a placeholder for an invalid/partial image.
+        byte[] data = request.downloadHandler.data;
+        if (data == null || data.Length == 0) return null;
+        var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+        bool decoded = false;
+        try
+        {
+            decoded = ImageConversion.LoadImage(texture, data, false);
+            if (decoded && texture.width > 0 && texture.height > 0)
+            {
+                // Editor scene changes may unload downloaded textures, which aren't asset files.
+                texture.hideFlags = HideFlags.DontUnloadUnusedAsset;
+                return texture;
+            }
+            if (!quiet) Debug.LogWarning("Could not decode media image: " + filename);
+            return null;
+        }
+        finally
+        {
+            if (!decoded) UnityEngine.Object.DestroyImmediate(texture);
+        }
     }
 
     public async Awaitable<ScenePublishResponse> PublishSceneAsync(ToolkitSceneBundle bundle)

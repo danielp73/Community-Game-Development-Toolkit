@@ -16,7 +16,7 @@ public static class ToolkitUpdater
 
     private static string Root => Path.GetFullPath(ToolkitFolder);
 
-    [MenuItem("Game-Toolkit/Update Toolkit")]
+    [MenuItem("Game-Toolkit/Update Toolkit", false, 3000)]
     private static async void UpdateToolkit()
     {
         busy = true;
@@ -103,10 +103,10 @@ public static class ToolkitUpdater
         }
     }
 
-    [MenuItem("Game-Toolkit/Update Toolkit", true)]
+    [MenuItem("Game-Toolkit/Update Toolkit", true, 3000)]
     private static bool CanUpdate() => !busy && !EditorApplication.isCompiling && !EditorApplication.isPlayingOrWillChangePlaymode;
 
-    [MenuItem("Game-Toolkit/Developer/Build Update ZIP")]
+    [MenuItem("Game-Toolkit/Developer/Build Update ZIP", false, 2000)]
     private static void BuildUpdateZip()
     {
         string output = EditorUtility.SaveFilePanel("Build toolkit update ZIP", "", "latest", "zip");
