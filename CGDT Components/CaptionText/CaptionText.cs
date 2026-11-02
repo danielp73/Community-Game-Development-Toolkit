@@ -6,6 +6,7 @@ using System.Linq;
 //using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 
 [ExecuteInEditMode]
@@ -52,7 +53,7 @@ public class CaptionText : MonoBehaviour
 
         if(onDisplay)
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 currentSentence++;
                 if(currentSentence>=sentences.Length)
